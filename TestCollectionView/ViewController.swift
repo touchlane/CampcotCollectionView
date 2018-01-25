@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionHeadersPinToVisibleBounds = true
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
