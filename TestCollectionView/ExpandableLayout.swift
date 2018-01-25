@@ -59,8 +59,9 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
             let numberOfSections = dataSource.numberOfSections!(in: collectionView)
             for section in 0..<numberOfSections {
                 
-                let height: CGFloat = 60//delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: section)
-                let width = collectionView.bounds.width
+                let headerSize = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: section)
+                let height = headerSize.height
+                let width = headerSize.width
                 
                 let indexPath = IndexPath(row: 0, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
@@ -76,12 +77,13 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
                 itemsAttributes.append([])
                 for row in 0..<numberOfItems {
                     let indexPath = IndexPath(row: row, section: section)
+                    let itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
                     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                     if row % 2 == 0 {
-                        attributes.frame = CGRect(x: 0, y: contentHeight, width: width / 2, height: 0)
+                        attributes.frame = CGRect(x: 0, y: contentHeight, width: itemSize.width, height: 0)
                     }
                     else {
-                        attributes.frame = CGRect(x: width / 2, y: contentHeight, width: width / 2, height: 0)
+                        attributes.frame = CGRect(x: self.collectionViewContentSize.width - itemSize.width, y: contentHeight, width: itemSize.width, height: 0)
                     }
                     attributes.isHidden = true
                     itemsAttributes[section].append(attributes)
