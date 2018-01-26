@@ -1,12 +1,13 @@
 //
 //  ViewController.swift
-//  TestCollectionView
+//  Example
 //
 //  Created by Panda Systems on 12/19/17.
-//  Copyright © 2017 Panda Systems. All rights reserved.
+//  Copyright © 2018 Touchlane LLC. All rights reserved.
 //
 
 import UIKit
+import ExpandableLayout
 
 class ViewController: UIViewController {
 
@@ -68,7 +69,7 @@ extension ViewController: HeaderViewDelegate {
         if let _ = collectionView.collectionViewLayout as? ExpandableLayout {
             newLayout = UICollectionViewFlowLayout()
             newLayout.sectionHeadersPinToVisibleBounds = true
-            
+
         } else {
             newLayout = ExpandableLayout()
         }

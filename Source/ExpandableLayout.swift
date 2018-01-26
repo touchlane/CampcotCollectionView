@@ -1,21 +1,20 @@
 //
 //  ExpandableLayout.swift
-//  TestCollectionView
+//  ExpandableLayout
 //
-//  Created by Panda Systems on 12/19/17.
-//  Copyright © 2017 Panda Systems. All rights reserved.
+//  Created by Vadim Morozov on 1/26/18.
+//  Copyright © 2018 Touchlane LLC. All rights reserved.
 //
 
 import UIKit
 
-
-class ExpandableLayout: UICollectionViewFlowLayout  {
+public class ExpandableLayout: UICollectionViewFlowLayout  {
     var expanded: Bool = false {
         didSet {
-          self.invalidateLayout()
+            self.invalidateLayout()
         }
     }
-
+    
     private var contentHeight: CGFloat = 0
     
     private var contentWidth: CGFloat {
@@ -26,7 +25,7 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
         return collectionView.bounds.width - (insets.left + insets.right)
     }
     
-    override var collectionViewContentSize: CGSize {
+    override public var collectionViewContentSize: CGSize {
         if !expanded {
             return CGSize(width: contentWidth, height: contentHeight)
         }
@@ -38,7 +37,7 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
     private var headersAttributes: [UICollectionViewLayoutAttributes] = []
     private var itemsAttributes: [[UICollectionViewLayoutAttributes]] = []
     
-    override func prepare() {
+    override public func prepare() {
         guard let collectionView = self.collectionView else {
             return
         }
@@ -72,8 +71,8 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
                 
                 
                 let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
-//                var array: [UICollectionViewLayoutAttributes] = []
-//                array.reserveCapacity(numberOfItems)
+                //                var array: [UICollectionViewLayoutAttributes] = []
+                //                array.reserveCapacity(numberOfItems)
                 itemsAttributes.append([])
                 for row in 0..<numberOfItems {
                     let indexPath = IndexPath(row: row, section: section)
@@ -96,7 +95,7 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
         }
     }
     
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         if !expanded {
             var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
             
@@ -112,7 +111,7 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
         }
     }
     
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if !expanded {
             return self.headersAttributes[indexPath.section]
         }
@@ -120,9 +119,9 @@ class ExpandableLayout: UICollectionViewFlowLayout  {
             return super.layoutAttributesForItem(at: indexPath)
         }
     }
-
-
-    override func layoutAttributesForItem(at indexPath: IndexPath) ->  UICollectionViewLayoutAttributes? {
+    
+    
+    override public func layoutAttributesForItem(at indexPath: IndexPath) ->  UICollectionViewLayoutAttributes? {
         if !expanded {
             return self.itemsAttributes[indexPath.section][indexPath.row]
         }

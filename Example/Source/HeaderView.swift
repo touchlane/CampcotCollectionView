@@ -1,9 +1,9 @@
 //
 //  HeaderView.swift
-//  TestCollectionView
+//  Example
 //
 //  Created by Panda Systems on 1/8/18.
-//  Copyright © 2018 Panda Systems. All rights reserved.
+//  Copyright © 2018 Touchlane LLC. All rights reserved.
 //
 
 import UIKit
