@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		DD35D958201B5F390049ED03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D957201B5F390049ED03 /* AppDelegate.swift */; };
 		DD35D95A201B5F390049ED03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D959201B5F390049ED03 /* ViewController.swift */; };
-		DD35D95D201B5F390049ED03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD35D95B201B5F390049ED03 /* Main.storyboard */; };
 		DD35D95F201B5F390049ED03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD35D95E201B5F390049ED03 /* Images.xcassets */; };
 		DD35D97A201B62D80049ED03 /* ExpandableLayout.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = DD35D974201B62BA0049ED03 /* ExpandableLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD35D97D201B63C70049ED03 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD35D97C201B63C70049ED03 /* LaunchScreen.xib */; };
-		DD35D980201B63F70049ED03 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97E201B63F70049ED03 /* HeaderView.swift */; };
-		DD35D981201B63F70049ED03 /* SuperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97F201B63F70049ED03 /* SuperCell.swift */; };
+		DD35D980201B63F70049ED03 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97E201B63F70049ED03 /* CustomHeaderView.swift */; };
+		DD35D981201B63F70049ED03 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,13 +58,12 @@
 		DD35D954201B5F390049ED03 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD35D957201B5F390049ED03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD35D959201B5F390049ED03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DD35D95C201B5F390049ED03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD35D95E201B5F390049ED03 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DD35D963201B5F390049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD35D96E201B62BA0049ED03 /* ExpandableLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ExpandableLayout.xcodeproj; path = ../ExpandableLayout.xcodeproj; sourceTree = "<group>"; };
 		DD35D97C201B63C70049ED03 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		DD35D97E201B63F70049ED03 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		DD35D97F201B63F70049ED03 /* SuperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperCell.swift; sourceTree = "<group>"; };
+		DD35D97E201B63F70049ED03 /* CustomHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				DD35D959201B5F390049ED03 /* ViewController.swift */,
-				DD35D97E201B63F70049ED03 /* HeaderView.swift */,
-				DD35D97F201B63F70049ED03 /* SuperCell.swift */,
-				DD35D95B201B5F390049ED03 /* Main.storyboard */,
+				DD35D97E201B63F70049ED03 /* CustomHeaderView.swift */,
+				DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */,
 				DD35D957201B5F390049ED03 /* AppDelegate.swift */,
 				DD35D95E201B5F390049ED03 /* Images.xcassets */,
 				DD35D97C201B63C70049ED03 /* LaunchScreen.xib */,
@@ -214,7 +211,6 @@
 			files = (
 				DD35D95F201B5F390049ED03 /* Images.xcassets in Resources */,
 				DD35D97D201B63C70049ED03 /* LaunchScreen.xib in Resources */,
-				DD35D95D201B5F390049ED03 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,8 +222,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD35D95A201B5F390049ED03 /* ViewController.swift in Sources */,
-				DD35D981201B63F70049ED03 /* SuperCell.swift in Sources */,
-				DD35D980201B63F70049ED03 /* HeaderView.swift in Sources */,
+				DD35D981201B63F70049ED03 /* CustomCollectionViewCell.swift in Sources */,
+				DD35D980201B63F70049ED03 /* CustomHeaderView.swift in Sources */,
 				DD35D958201B5F390049ED03 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,17 +237,6 @@
 			targetProxy = DD35D977201B62C90049ED03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		DD35D95B201B5F390049ED03 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DD35D95C201B5F390049ED03 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DD35D964201B5F390049ED03 /* Debug */ = {
@@ -366,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NPGMYNXF85;
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.Example;
@@ -380,6 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NPGMYNXF85;
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.Example;

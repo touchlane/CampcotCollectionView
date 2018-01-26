@@ -10,22 +10,51 @@ import UIKit
 import ExpandableLayout
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var collectionView: UICollectionView!
+    let expandedLayout = UICollectionViewFlowLayout()
+    let collapsedLayout = ExpandableLayout()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionHeadersPinToVisibleBounds = true
+        self.view.backgroundColor = UIColor.white
+        self.expandedLayout.sectionHeadersPinToVisibleBounds = true
+        self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.expandedLayout)
+        self.collectionView.backgroundColor = UIColor.white
+        self.collectionView.clipsToBounds = true
+        self.collectionView.register(
+            CustomCollectionViewCell.self,
+            forCellWithReuseIdentifier: "CustomCell"
+        )
+        self.collectionView.register(
+            CustomHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: "CustomHeaderView"
+        )
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.collectionView)
+        self.activateCollectionViewConstraints(view: self.collectionView, anchorView: self.view)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
+    private func activateCollectionViewConstraints(view: UIView, anchorView: UIView) {
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: anchorView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: anchorView.trailingAnchor),
+            view.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor),
+            view.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor)]
+        )
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2000
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,19 +62,21 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SuperCell
-        
-        cell.superLabel.text = "\(indexPath.section):\(indexPath.row)"
-        
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "CustomCell",
+            for: indexPath) as! CustomCollectionViewCell
+        cell.text = "\(indexPath.section):\(indexPath.row)"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderView
-        view.headerTitle.text = "Section: \(indexPath.section)"
-        
+        let view = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: "CustomHeaderView",
+            for: indexPath) as! CustomHeaderView
+        view.section = indexPath.section
+        view.text = "Section: \(indexPath.section)"
         view.delegate = self
-        view.indexPath = indexPath
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         return view
@@ -63,20 +94,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ViewController: HeaderViewDelegate {
-    func didTapped(at indexPath: IndexPath) {
-        var newLayout: UICollectionViewFlowLayout
-        if let _ = collectionView.collectionViewLayout as? ExpandableLayout {
-            newLayout = UICollectionViewFlowLayout()
-            newLayout.sectionHeadersPinToVisibleBounds = true
-
-        } else {
-            newLayout = ExpandableLayout()
-        }
-
-        self.collectionView.setCollectionViewLayout(newLayout, animated: true, completion: { _ in
-
-        })
+extension ViewController: CustomHeaderViewDelegate {
+    func selectSection(section: Int) {
+        let newLayout = self.collectionView.collectionViewLayout === self.collapsedLayout ? self.expandedLayout : self.collapsedLayout
+        self.collectionView.setCollectionViewLayout(newLayout, animated: true, completion: { _ in })
     }
 }
-
