@@ -1,0 +1,15 @@
+os: osx
+osx_image: xcode9
+language: objective-c
+
+deploy:
+  provider: script
+  script: ./scripts/deploy.sh
+  on:
+    tags: true
+
+script:
+  - set -o pipefail && xcodebuild -scheme ExpandableLayout -workspace ExpandableLayout.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.0' build test | xcpretty --color
+  - pod lib lint
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
