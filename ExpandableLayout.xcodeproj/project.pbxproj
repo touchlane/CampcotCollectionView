@@ -11,6 +11,9 @@
 		DD35D93C201B57C80049ED03 /* ExpandableLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D93B201B57C80049ED03 /* ExpandableLayoutTests.swift */; };
 		DD35D93E201B57C80049ED03 /* ExpandableLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = DD35D930201B57C80049ED03 /* ExpandableLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD35D94A201B5E280049ED03 /* ExpandableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D949201B5E280049ED03 /* ExpandableLayout.swift */; };
+		DD35D98A201B66B40049ED03 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DD35D987201B66B40049ED03 /* LICENSE */; };
+		DD35D98B201B66B40049ED03 /* ExpandableLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DD35D988201B66B40049ED03 /* ExpandableLayout.podspec */; };
+		DD35D98C201B66B40049ED03 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DD35D989201B66B40049ED03 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +34,9 @@
 		DD35D93B201B57C80049ED03 /* ExpandableLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLayoutTests.swift; sourceTree = "<group>"; };
 		DD35D93D201B57C80049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD35D949201B5E280049ED03 /* ExpandableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLayout.swift; sourceTree = "<group>"; };
+		DD35D987201B66B40049ED03 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		DD35D988201B66B40049ED03 /* ExpandableLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExpandableLayout.podspec; sourceTree = "<group>"; };
+		DD35D989201B66B40049ED03 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,7 @@
 		DD35D923201B57C80049ED03 = {
 			isa = PBXGroup;
 			children = (
+				DD35D986201B66A00049ED03 /* Metadata */,
 				DD35D947201B58910049ED03 /* Source */,
 				DD35D93A201B57C80049ED03 /* Tests */,
 				DD35D92E201B57C80049ED03 /* Products */,
@@ -103,6 +110,16 @@
 				DD35D93D201B57C80049ED03 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD35D986201B66A00049ED03 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				DD35D987201B66B40049ED03 /* LICENSE */,
+				DD35D989201B66B40049ED03 /* README.md */,
+				DD35D988201B66B40049ED03 /* ExpandableLayout.podspec */,
+			);
+			name = Metadata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +216,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD35D98C201B66B40049ED03 /* README.md in Resources */,
+				DD35D98B201B66B40049ED03 /* ExpandableLayout.podspec in Resources */,
+				DD35D98A201B66B40049ED03 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
