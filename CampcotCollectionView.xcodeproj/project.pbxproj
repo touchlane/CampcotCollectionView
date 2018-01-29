@@ -10,10 +10,11 @@
 		DD35D937201B57C80049ED03 /* CampcotCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD35D92D201B57C80049ED03 /* CampcotCollectionView.framework */; };
 		DD35D93C201B57C80049ED03 /* CampcotCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D93B201B57C80049ED03 /* CampcotCollectionViewTests.swift */; };
 		DD35D93E201B57C80049ED03 /* CampcotCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = DD35D930201B57C80049ED03 /* CampcotCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DD35D94A201B5E280049ED03 /* ExpandableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D949201B5E280049ED03 /* ExpandableLayout.swift */; };
+		DD35D94A201B5E280049ED03 /* ExpandedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D949201B5E280049ED03 /* ExpandedLayout.swift */; };
 		DD35D98A201B66B40049ED03 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DD35D987201B66B40049ED03 /* LICENSE */; };
 		DD35D98B201B66B40049ED03 /* CampcotCollectionView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DD35D988201B66B40049ED03 /* CampcotCollectionView.podspec */; };
 		DD35D98C201B66B40049ED03 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DD35D989201B66B40049ED03 /* README.md */; };
+		DDFB5C80201F451E00F8E164 /* CollapsedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB5C7F201F451E00F8E164 /* CollapsedLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +34,11 @@
 		DD35D936201B57C80049ED03 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD35D93B201B57C80049ED03 /* CampcotCollectionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampcotCollectionViewTests.swift; sourceTree = "<group>"; };
 		DD35D93D201B57C80049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD35D949201B5E280049ED03 /* ExpandableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLayout.swift; sourceTree = "<group>"; };
+		DD35D949201B5E280049ED03 /* ExpandedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedLayout.swift; sourceTree = "<group>"; };
 		DD35D987201B66B40049ED03 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DD35D988201B66B40049ED03 /* CampcotCollectionView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CampcotCollectionView.podspec; sourceTree = "<group>"; };
 		DD35D989201B66B40049ED03 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DDFB5C7F201F451E00F8E164 /* CollapsedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				DD35D92F201B57C80049ED03 /* Supporting Files */,
-				DD35D949201B5E280049ED03 /* ExpandableLayout.swift */,
+				DD35D949201B5E280049ED03 /* ExpandedLayout.swift */,
+				DDFB5C7F201F451E00F8E164 /* CollapsedLayout.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -236,7 +239,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD35D94A201B5E280049ED03 /* ExpandableLayout.swift in Sources */,
+				DD35D94A201B5E280049ED03 /* ExpandedLayout.swift in Sources */,
+				DDFB5C80201F451E00F8E164 /* CollapsedLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

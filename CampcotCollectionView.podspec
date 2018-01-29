@@ -1,10 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = 'CampcotCollectionView'
   s.version          = '0.0.1'
-  s.summary          = 'UICollectionViewLayout extension to expand and collapse sections.'
-  s.description      = <<-DESC
-  Expand or collapse sections of UICollectionView.
-                       DESC
+  s.summary          = 'CapmcotCollectionView is custom UICollectionView that allows to expand and collapse sections.'
+  s.description      = 'This library provides a custom UICollectionView that allows to expand and collapse sections.'   \
+                       'It provides a simple API to manage collection view appearance.'
   s.homepage         = 'https://github.com/touchlane/CampcotCollectionView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Touchlane LLC' => 'tech@touchlane.com' }
