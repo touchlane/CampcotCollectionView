@@ -8,8 +8,12 @@
 
 public class ExpandedLayout: UICollectionViewFlowLayout  {
     public var targetSection: Int = 0
-    var collapseHiddenSections = false
     
+    private var isTransitingToCollapsed = false {
+        didSet {
+            self.invalidateLayout()
+        }
+    }
     private var contentHeight: CGFloat = 0
     private var contentWidth: CGFloat {
         guard let collectionView = collectionView else {
@@ -29,7 +33,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     override public func prepare() {
         super.prepare()
         
-        guard !self.collapseHiddenSections else {
+        guard !self.isTransitingToCollapsed else {
             self.collapseInvisibleSections()
             return
         }
@@ -95,6 +99,22 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             }
         }
         print("Expanded content height \(contentHeight)")
+    }
+    
+    override public func prepareForTransition(to newLayout: UICollectionViewLayout) {
+        super.prepareForTransition(to: newLayout)
+        if newLayout is CollapsedLayout {
+            self.isTransitingToCollapsed = true
+        }
+    }
+    
+    override public func prepareForTransition(from oldLayout: UICollectionViewLayout) {
+        super.prepareForTransition(from: oldLayout)
+    }
+    
+    override public func finalizeLayoutTransition() {
+        super.finalizeLayoutTransition()
+        self.isTransitingToCollapsed = false
     }
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

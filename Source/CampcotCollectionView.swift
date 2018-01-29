@@ -36,11 +36,6 @@ public class CampcotCollectionView: UICollectionView {
         }
         self.collapsedLayout.targetSection = section
         self.expandedLayout.targetSection = section
-        self.expandedLayout.collapseHiddenSections = true
-        self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: { completed in
-            self.expandedLayout.collapseHiddenSections = false
-            self.expandedLayout.invalidateLayout()
-            completion?(completed)
-        })
+        self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: completion)
     }
 }
