@@ -20,6 +20,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        self.clipsToBounds = true
         self.backgroundColor = self.internalBackgroundColor
         self.textLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.textLabel)

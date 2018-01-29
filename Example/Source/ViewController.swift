@@ -12,14 +12,14 @@ import ExpandableLayout
 class ViewController: UIViewController {
     
     var collectionView: UICollectionView!
-    let expandedLayout = UICollectionViewFlowLayout()
+    let expandedLayout = ExpandableLayout()
     let collapsedLayout = ExpandableLayout()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        self.expandedLayout.sectionHeadersPinToVisibleBounds = true
-        self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.expandedLayout)
+        self.expandedLayout.expanded = true
+        self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collapsedLayout)
         self.collectionView.backgroundColor = UIColor.white
         self.collectionView.clipsToBounds = true
         self.collectionView.register(
@@ -96,7 +96,10 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: CustomHeaderViewDelegate {
     func selectSection(section: Int) {
+//        self.collapsedLayout.expanded = !self.collapsedLayout.expanded
+//        self.collectionView.setCollectionViewLayout(self.collapsedLayout, animated: true)
         let newLayout = self.collectionView.collectionViewLayout === self.collapsedLayout ? self.expandedLayout : self.collapsedLayout
+        newLayout.targetSection = section
         self.collectionView.setCollectionViewLayout(newLayout, animated: true, completion: { _ in })
     }
 }
