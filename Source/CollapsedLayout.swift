@@ -8,6 +8,7 @@
 
 public class CollapsedLayout: UICollectionViewFlowLayout {
     public var targetSection: Int = 0
+    public var offsetCorrection: CGFloat = 0
     
     private var contentHeight: CGFloat = 0
     private var contentWidth: CGFloat {
@@ -111,7 +112,7 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
             return proposedContentOffset
         }
         var targetOffset = proposedContentOffset
-        targetOffset.y = -collectionView.contentInset.top
+        targetOffset.y = offsetCorrection
         for section in 0..<self.targetSection {
             let height = self.headersAttributes[section].frame.size.height
             targetOffset.y += height

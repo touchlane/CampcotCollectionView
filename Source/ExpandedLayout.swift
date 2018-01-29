@@ -8,6 +8,7 @@
 
 public class ExpandedLayout: UICollectionViewFlowLayout  {
     public var targetSection: Int = 0
+    public var offsetCorrection: CGFloat = 0
     
     private var isTransitingToCollapsed = false {
         didSet {
@@ -148,7 +149,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             return proposedContentOffset
         }
         var targetOffset = proposedContentOffset
-        targetOffset.y = -collectionView.contentInset.top
+        targetOffset.y = offsetCorrection
         for section in 0..<self.targetSection {
             let height = self.headersAttributes[section].frame.size.height
             targetOffset.y += height

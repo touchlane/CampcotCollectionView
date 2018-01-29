@@ -22,19 +22,21 @@ public class CampcotCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func expand(from section: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+    public func expand(from section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
         guard !self.isExpanded else {
             return
         }
         self.expandedLayout.targetSection = section
+        self.expandedLayout.offsetCorrection = offsetCorrection
         self.setCollectionViewLayout(self.expandedLayout, animated: animated, completion: completion)
     }
     
-    public func collapse(to section: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+    public func collapse(to section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
         guard self.isExpanded else {
             return
         }
         self.collapsedLayout.targetSection = section
+        self.collapsedLayout.offsetCorrection = offsetCorrection
         self.expandedLayout.targetSection = section
         self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: completion)
     }
