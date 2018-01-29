@@ -153,21 +153,7 @@ public class ExpandableLayout: UICollectionViewFlowLayout  {
             return visibleLayoutAttributes
         }
         else {
-            var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
-            
-            for attributes in headersAttributes {
-                if attributes.frame.intersects(rect) {
-                    visibleLayoutAttributes.append(attributes)
-                }
-            }
-            for sectionAttributes in itemsAttributes {
-                for attributes in sectionAttributes {
-                    if attributes.frame.intersects(rect) {
-                        visibleLayoutAttributes.append(attributes)
-                    }
-                }
-            }
-            return visibleLayoutAttributes
+            return super.layoutAttributesForElements(in: rect)
         }
     }
     
