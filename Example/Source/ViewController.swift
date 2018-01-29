@@ -11,14 +11,11 @@ import CampcotCollectionView
 
 class ViewController: UIViewController {
     
-    var collectionView: UICollectionView!
-    let expandedLayout = ExpandedLayout()
-    let collapsedLayout = CollapsedLayout()
+    let collectionView = CampcotCollectionView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.expandedLayout)
         self.collectionView.backgroundColor = UIColor.white
         self.collectionView.clipsToBounds = true
         self.collectionView.register(
@@ -95,9 +92,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: CustomHeaderViewDelegate {
     func selectSection(section: Int) {
-        let newLayout = self.collectionView.collectionViewLayout === self.collapsedLayout ? self.expandedLayout : self.collapsedLayout
-        self.expandedLayout.targetSection = section
-        self.collapsedLayout.targetSection = section
-        self.collectionView.setCollectionViewLayout(newLayout, animated: true, completion: { _ in })
+        if self.collectionView.isExpanded {
+            self.collectionView.collapse(to: section, animated: true)
+        }
+        else {
+            self.collectionView.expand(from: section, animated: true)
+        }
     }
 }

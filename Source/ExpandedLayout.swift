@@ -93,7 +93,6 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
-        
         for attributes in headersAttributes {
             if attributes.frame.intersects(rect) {
                 visibleLayoutAttributes.append(attributes)
