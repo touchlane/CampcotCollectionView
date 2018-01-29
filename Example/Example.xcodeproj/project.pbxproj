@@ -10,33 +10,33 @@
 		DD35D958201B5F390049ED03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D957201B5F390049ED03 /* AppDelegate.swift */; };
 		DD35D95A201B5F390049ED03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D959201B5F390049ED03 /* ViewController.swift */; };
 		DD35D95F201B5F390049ED03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD35D95E201B5F390049ED03 /* Images.xcassets */; };
-		DD35D97A201B62D80049ED03 /* ExpandableLayout.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = DD35D974201B62BA0049ED03 /* ExpandableLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD35D97D201B63C70049ED03 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD35D97C201B63C70049ED03 /* LaunchScreen.xib */; };
 		DD35D980201B63F70049ED03 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97E201B63F70049ED03 /* CustomHeaderView.swift */; };
 		DD35D981201B63F70049ED03 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */; };
+		DDFB5C7A201F36BC00F8E164 /* CampcotCollectionView.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = DDFB5C75201F367A00F8E164 /* CampcotCollectionView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DD35D973201B62BA0049ED03 /* PBXContainerItemProxy */ = {
+		DDFB5C74201F367A00F8E164 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD35D96E201B62BA0049ED03 /* ExpandableLayout.xcodeproj */;
+			containerPortal = DD35D96E201B62BA0049ED03 /* CampcotCollectionView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DD35D92D201B57C80049ED03;
-			remoteInfo = ExpandableLayout;
+			remoteInfo = CampcotCollectionView;
 		};
-		DD35D975201B62BA0049ED03 /* PBXContainerItemProxy */ = {
+		DDFB5C76201F367A00F8E164 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD35D96E201B62BA0049ED03 /* ExpandableLayout.xcodeproj */;
+			containerPortal = DD35D96E201B62BA0049ED03 /* CampcotCollectionView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DD35D936201B57C80049ED03;
 			remoteInfo = Tests;
 		};
-		DD35D977201B62C90049ED03 /* PBXContainerItemProxy */ = {
+		DDFB5C78201F36B400F8E164 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD35D96E201B62BA0049ED03 /* ExpandableLayout.xcodeproj */;
+			containerPortal = DD35D96E201B62BA0049ED03 /* CampcotCollectionView.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = DD35D92C201B57C80049ED03;
-			remoteInfo = ExpandableLayout;
+			remoteInfo = CampcotCollectionView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DD35D97A201B62D80049ED03 /* ExpandableLayout.framework in Copy Frameworks */,
+				DDFB5C7A201F36BC00F8E164 /* CampcotCollectionView.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,7 +60,7 @@
 		DD35D959201B5F390049ED03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DD35D95E201B5F390049ED03 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DD35D963201B5F390049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD35D96E201B62BA0049ED03 /* ExpandableLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ExpandableLayout.xcodeproj; path = ../ExpandableLayout.xcodeproj; sourceTree = "<group>"; };
+		DD35D96E201B62BA0049ED03 /* CampcotCollectionView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CampcotCollectionView.xcodeproj; path = ../CampcotCollectionView.xcodeproj; sourceTree = "<group>"; };
 		DD35D97C201B63C70049ED03 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		DD35D97E201B63F70049ED03 /* CustomHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 			children = (
 				DD35D956201B5F390049ED03 /* Source */,
 				DD35D955201B5F390049ED03 /* Products */,
-				DD35D96E201B62BA0049ED03 /* ExpandableLayout.xcodeproj */,
+				DD35D96E201B62BA0049ED03 /* CampcotCollectionView.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,11 +116,11 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DD35D96F201B62BA0049ED03 /* Products */ = {
+		DDFB5C70201F367800F8E164 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD35D974201B62BA0049ED03 /* ExpandableLayout.framework */,
-				DD35D976201B62BA0049ED03 /* Tests.xctest */,
+				DDFB5C75201F367A00F8E164 /* CampcotCollectionView.framework */,
+				DDFB5C77201F367A00F8E164 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +140,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				DD35D978201B62C90049ED03 /* PBXTargetDependency */,
+				DDFB5C79201F36B400F8E164 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -176,8 +176,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DD35D96F201B62BA0049ED03 /* Products */;
-					ProjectRef = DD35D96E201B62BA0049ED03 /* ExpandableLayout.xcodeproj */;
+					ProductGroup = DDFB5C70201F367800F8E164 /* Products */;
+					ProjectRef = DD35D96E201B62BA0049ED03 /* CampcotCollectionView.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -188,18 +188,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DD35D974201B62BA0049ED03 /* ExpandableLayout.framework */ = {
+		DDFB5C75201F367A00F8E164 /* CampcotCollectionView.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = ExpandableLayout.framework;
-			remoteRef = DD35D973201B62BA0049ED03 /* PBXContainerItemProxy */;
+			path = CampcotCollectionView.framework;
+			remoteRef = DDFB5C74201F367A00F8E164 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DD35D976201B62BA0049ED03 /* Tests.xctest */ = {
+		DDFB5C77201F367A00F8E164 /* Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = Tests.xctest;
-			remoteRef = DD35D975201B62BA0049ED03 /* PBXContainerItemProxy */;
+			remoteRef = DDFB5C76201F367A00F8E164 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -231,10 +231,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DD35D978201B62C90049ED03 /* PBXTargetDependency */ = {
+		DDFB5C79201F36B400F8E164 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ExpandableLayout;
-			targetProxy = DD35D977201B62C90049ED03 /* PBXContainerItemProxy */;
+			name = CampcotCollectionView;
+			targetProxy = DDFB5C78201F36B400F8E164 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

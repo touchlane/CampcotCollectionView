@@ -1,15 +1,15 @@
 //
-//  ExpandableLayoutTests.swift
-//  ExpandableLayoutTests
+//  CampcotCollectionViewTests.swift
+//  CampcotCollectionViewTests
 //
 //  Created by Vadim Morozov on 1/26/18.
 //  Copyright © 2018 Touchlane LLC. All rights reserved.
 //
 
 import XCTest
-@testable import ExpandableLayout
+@testable import CampcotCollectionView
 
-class ExpandableLayoutTests: XCTestCase {
+class CampcotCollectionViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

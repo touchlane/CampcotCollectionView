@@ -5,6 +5,6 @@
       location = "group:Example/Example.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:ExpandableLayout.xcodeproj">
+      location = "container:/Users/vmorozov/Developer/Touchlane/ExpandableLayout/CampcotCollectionView.xcodeproj">
    </FileRef>
 </Workspace>

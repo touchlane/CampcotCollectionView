@@ -1,6 +1,6 @@
 //
 //  ExpandableLayout.swift
-//  ExpandableLayout
+//  CampcotCollectionView
 //
 //  Created by Vadim Morozov on 1/26/18.
 //  Copyright © 2018 Touchlane LLC. All rights reserved.

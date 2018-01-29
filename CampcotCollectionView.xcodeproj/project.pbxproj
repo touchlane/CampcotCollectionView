@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD35D937201B57C80049ED03 /* ExpandableLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD35D92D201B57C80049ED03 /* ExpandableLayout.framework */; };
-		DD35D93C201B57C80049ED03 /* ExpandableLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D93B201B57C80049ED03 /* ExpandableLayoutTests.swift */; };
-		DD35D93E201B57C80049ED03 /* ExpandableLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = DD35D930201B57C80049ED03 /* ExpandableLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD35D937201B57C80049ED03 /* CampcotCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD35D92D201B57C80049ED03 /* CampcotCollectionView.framework */; };
+		DD35D93C201B57C80049ED03 /* CampcotCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D93B201B57C80049ED03 /* CampcotCollectionViewTests.swift */; };
+		DD35D93E201B57C80049ED03 /* CampcotCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = DD35D930201B57C80049ED03 /* CampcotCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD35D94A201B5E280049ED03 /* ExpandableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D949201B5E280049ED03 /* ExpandableLayout.swift */; };
 		DD35D98A201B66B40049ED03 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DD35D987201B66B40049ED03 /* LICENSE */; };
-		DD35D98B201B66B40049ED03 /* ExpandableLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DD35D988201B66B40049ED03 /* ExpandableLayout.podspec */; };
+		DD35D98B201B66B40049ED03 /* CampcotCollectionView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DD35D988201B66B40049ED03 /* CampcotCollectionView.podspec */; };
 		DD35D98C201B66B40049ED03 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DD35D989201B66B40049ED03 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -27,15 +27,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DD35D92D201B57C80049ED03 /* ExpandableLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExpandableLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD35D930201B57C80049ED03 /* ExpandableLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpandableLayout.h; sourceTree = "<group>"; };
+		DD35D92D201B57C80049ED03 /* CampcotCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CampcotCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD35D930201B57C80049ED03 /* CampcotCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CampcotCollectionView.h; sourceTree = "<group>"; };
 		DD35D931201B57C80049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD35D936201B57C80049ED03 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD35D93B201B57C80049ED03 /* ExpandableLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLayoutTests.swift; sourceTree = "<group>"; };
+		DD35D93B201B57C80049ED03 /* CampcotCollectionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampcotCollectionViewTests.swift; sourceTree = "<group>"; };
 		DD35D93D201B57C80049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD35D949201B5E280049ED03 /* ExpandableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLayout.swift; sourceTree = "<group>"; };
 		DD35D987201B66B40049ED03 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		DD35D988201B66B40049ED03 /* ExpandableLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExpandableLayout.podspec; sourceTree = "<group>"; };
+		DD35D988201B66B40049ED03 /* CampcotCollectionView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CampcotCollectionView.podspec; sourceTree = "<group>"; };
 		DD35D989201B66B40049ED03 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD35D937201B57C80049ED03 /* ExpandableLayout.framework in Frameworks */,
+				DD35D937201B57C80049ED03 /* CampcotCollectionView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +71,7 @@
 		DD35D92E201B57C80049ED03 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD35D92D201B57C80049ED03 /* ExpandableLayout.framework */,
+				DD35D92D201B57C80049ED03 /* CampcotCollectionView.framework */,
 				DD35D936201B57C80049ED03 /* Tests.xctest */,
 			);
 			name = Products;
@@ -80,7 +80,7 @@
 		DD35D92F201B57C80049ED03 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DD35D930201B57C80049ED03 /* ExpandableLayout.h */,
+				DD35D930201B57C80049ED03 /* CampcotCollectionView.h */,
 				DD35D931201B57C80049ED03 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -89,7 +89,7 @@
 		DD35D93A201B57C80049ED03 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DD35D93B201B57C80049ED03 /* ExpandableLayoutTests.swift */,
+				DD35D93B201B57C80049ED03 /* CampcotCollectionViewTests.swift */,
 				DD35D948201B59420049ED03 /* Supporting Files */,
 			);
 			path = Tests;
@@ -117,7 +117,7 @@
 			children = (
 				DD35D987201B66B40049ED03 /* LICENSE */,
 				DD35D989201B66B40049ED03 /* README.md */,
-				DD35D988201B66B40049ED03 /* ExpandableLayout.podspec */,
+				DD35D988201B66B40049ED03 /* CampcotCollectionView.podspec */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -129,16 +129,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD35D93E201B57C80049ED03 /* ExpandableLayout.h in Headers */,
+				DD35D93E201B57C80049ED03 /* CampcotCollectionView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		DD35D92C201B57C80049ED03 /* ExpandableLayout */ = {
+		DD35D92C201B57C80049ED03 /* CampcotCollectionView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD35D941201B57C80049ED03 /* Build configuration list for PBXNativeTarget "ExpandableLayout" */;
+			buildConfigurationList = DD35D941201B57C80049ED03 /* Build configuration list for PBXNativeTarget "CampcotCollectionView" */;
 			buildPhases = (
 				DD35D928201B57C80049ED03 /* Sources */,
 				DD35D929201B57C80049ED03 /* Frameworks */,
@@ -149,9 +149,9 @@
 			);
 			dependencies = (
 			);
-			name = ExpandableLayout;
+			name = CampcotCollectionView;
 			productName = ExpandableLayout;
-			productReference = DD35D92D201B57C80049ED03 /* ExpandableLayout.framework */;
+			productReference = DD35D92D201B57C80049ED03 /* CampcotCollectionView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		DD35D935201B57C80049ED03 /* Tests */ = {
@@ -193,7 +193,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DD35D927201B57C80049ED03 /* Build configuration list for PBXProject "ExpandableLayout" */;
+			buildConfigurationList = DD35D927201B57C80049ED03 /* Build configuration list for PBXProject "CampcotCollectionView" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -205,7 +205,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DD35D92C201B57C80049ED03 /* ExpandableLayout */,
+				DD35D92C201B57C80049ED03 /* CampcotCollectionView */,
 				DD35D935201B57C80049ED03 /* Tests */,
 			);
 		};
@@ -217,7 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD35D98C201B66B40049ED03 /* README.md in Resources */,
-				DD35D98B201B66B40049ED03 /* ExpandableLayout.podspec in Resources */,
+				DD35D98B201B66B40049ED03 /* CampcotCollectionView.podspec in Resources */,
 				DD35D98A201B66B40049ED03 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,7 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD35D93C201B57C80049ED03 /* ExpandableLayoutTests.swift in Sources */,
+				DD35D93C201B57C80049ED03 /* CampcotCollectionViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +253,7 @@
 /* Begin PBXTargetDependency section */
 		DD35D939201B57C80049ED03 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DD35D92C201B57C80049ED03 /* ExpandableLayout */;
+			target = DD35D92C201B57C80049ED03 /* CampcotCollectionView */;
 			targetProxy = DD35D938201B57C80049ED03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -386,7 +386,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.ExpandableLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.CampcotCollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -409,7 +409,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.ExpandableLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.CampcotCollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -424,7 +424,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.ExpandableLayoutTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.CampcotCollectionViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -438,7 +438,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.ExpandableLayoutTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.touchlane.CampcotCollectionViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,7 +448,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DD35D927201B57C80049ED03 /* Build configuration list for PBXProject "ExpandableLayout" */ = {
+		DD35D927201B57C80049ED03 /* Build configuration list for PBXProject "CampcotCollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD35D93F201B57C80049ED03 /* Debug */,
@@ -457,7 +457,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DD35D941201B57C80049ED03 /* Build configuration list for PBXNativeTarget "ExpandableLayout" */ = {
+		DD35D941201B57C80049ED03 /* Build configuration list for PBXNativeTarget "CampcotCollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD35D942201B57C80049ED03 /* Debug */,

@@ -15,9 +15,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DD35D92C201B57C80049ED03"
-               BuildableName = "ExpandableLayout.framework"
-               BlueprintName = "ExpandableLayout"
-               ReferencedContainer = "container:ExpandableLayout.xcodeproj">
+               BuildableName = "CampcotCollectionView.framework"
+               BlueprintName = "CampcotCollectionView"
+               ReferencedContainer = "container:CampcotCollectionView.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DD35D935201B57C80049ED03"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
+               ReferencedContainer = "container:CampcotCollectionView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -37,7 +51,7 @@
                BlueprintIdentifier = "DD35D935201B57C80049ED03"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:ExpandableLayout.xcodeproj">
+               ReferencedContainer = "container:CampcotCollectionView.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,9 +59,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD35D92C201B57C80049ED03"
-            BuildableName = "ExpandableLayout.framework"
-            BlueprintName = "ExpandableLayout"
-            ReferencedContainer = "container:ExpandableLayout.xcodeproj">
+            BuildableName = "CampcotCollectionView.framework"
+            BlueprintName = "CampcotCollectionView"
+            ReferencedContainer = "container:CampcotCollectionView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD35D92C201B57C80049ED03"
-            BuildableName = "ExpandableLayout.framework"
-            BlueprintName = "ExpandableLayout"
-            ReferencedContainer = "container:ExpandableLayout.xcodeproj">
+            BuildableName = "CampcotCollectionView.framework"
+            BlueprintName = "CampcotCollectionView"
+            ReferencedContainer = "container:CampcotCollectionView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -86,9 +100,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD35D92C201B57C80049ED03"
-            BuildableName = "ExpandableLayout.framework"
-            BlueprintName = "ExpandableLayout"
-            ReferencedContainer = "container:ExpandableLayout.xcodeproj">
+            BuildableName = "CampcotCollectionView.framework"
+            BlueprintName = "CampcotCollectionView"
+            ReferencedContainer = "container:CampcotCollectionView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

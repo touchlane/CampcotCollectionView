@@ -1,10 +1,10 @@
 ![LOGO](https://github.com/touchlane/Docs/blob/master/Assets/logo.svg)
 
-<!--[![Build Status](https://travis-ci.org/touchlane/ExpandableLayout.svg?branch=master)](https://travis-ci.org/touchlane/ExpandableLayout)-->
-<!--[![codecov.io](https://codecov.io/gh/touchlane/ExpandableLayout/branch/master/graphs/badge.svg)](https://codecov.io/gh/codecov/ExpandableLayout/branch/master)-->
-<!--[![Version](https://img.shields.io/cocoapods/v/ExpandableLayout.svg?style=flat)](http://cocoapods.org/pods/ExpandableLayout)-->
-<!--[![License](https://img.shields.io/cocoapods/l/ExpandableLayout.svg?style=flat)](http://cocoapods.org/pods/ExpandableLayout)-->
-<!--[![Platform](https://img.shields.io/cocoapods/p/ExpandableLayout.svg?style=flat)](http://cocoapods.org/pods/ExpandableLayout)-->
+<!--[![Build Status](https://travis-ci.org/touchlane/CampcotCollectionView.svg?branch=master)](https://travis-ci.org/touchlane/CampcotCollectionView)-->
+<!--[![codecov.io](https://codecov.io/gh/touchlane/CampcotCollectionView/branch/master/graphs/badge.svg)](https://codecov.io/gh/codecov/CampcotCollectionView/branch/master)-->
+<!--[![Version](https://img.shields.io/cocoapods/v/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)-->
+<!--[![License](https://img.shields.io/cocoapods/l/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)-->
+<!--[![Platform](https://img.shields.io/cocoapods/p/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)-->
 
 # Requirements
 
@@ -28,7 +28,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'ExpandableLayout'
+    pod 'CampcotCollectionView'
 end
 ```
 
@@ -39,5 +39,5 @@ Then, run the following command:
 # Usage
 
 ```swift
-import ExpandableLayout
+import CampcotCollectionView
 ```
