@@ -9,6 +9,8 @@
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
+    static let reuseIdentifier = "CustomCell"
+    
     private let internalBackgroundColor = UIColor(red: 59.0 / 255.0, green: 128.0 / 255.0, blue: 144.0 / 255.0, alpha: 1)
     private let textLabel = UILabel()
     

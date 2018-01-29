@@ -20,12 +20,12 @@ class ViewController: UIViewController {
         self.collectionView.clipsToBounds = true
         self.collectionView.register(
             CustomCollectionViewCell.self,
-            forCellWithReuseIdentifier: "CustomCell"
+            forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier
         )
         self.collectionView.register(
             CustomHeaderView.self,
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: "CustomHeaderView"
+            withReuseIdentifier: CustomHeaderView.reuseIdentifier
         )
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -59,7 +59,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "CustomCell",
+            withReuseIdentifier: CustomCollectionViewCell.reuseIdentifier,
             for: indexPath) as! CustomCollectionViewCell
         cell.text = "\(indexPath.section):\(indexPath.row)"
         return cell
@@ -68,7 +68,7 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let view = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
-            withReuseIdentifier: "CustomHeaderView",
+            withReuseIdentifier: CustomHeaderView.reuseIdentifier,
             for: indexPath) as! CustomHeaderView
         view.section = indexPath.section
         view.text = "Section: \(indexPath.section)"

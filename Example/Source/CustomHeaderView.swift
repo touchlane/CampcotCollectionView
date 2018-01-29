@@ -13,6 +13,8 @@ protocol CustomHeaderViewDelegate: class {
 }
 
 class CustomHeaderView: UICollectionReusableView {
+    static let reuseIdentifier = "CustomHeaderView"
+    
     private let internalBackgroundColor = UIColor(red: 214.0 / 255.0, green: 218.0 / 255.0, blue: 231.0 / 255.0, alpha: 1)
     private let textLeadingOffset: CGFloat = 20
     private let textLabel = UILabel()
