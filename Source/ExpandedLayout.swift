@@ -148,7 +148,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             return proposedContentOffset
         }
         var targetOffset = proposedContentOffset
-        targetOffset.y = 0
+        targetOffset.y = -collectionView.contentInset.top
         for section in 0..<self.targetSection {
             let height = self.headersAttributes[section].frame.size.height
             targetOffset.y += height
