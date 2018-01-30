@@ -22,7 +22,23 @@ public class CampcotCollectionView: UICollectionView {
         }
     }
     
-    /// Layout section inset
+    /// Layout minimum interitem spaceign.
+    public var minimumInteritemSpacing: CGFloat = 0 {
+        didSet {
+            self.expandedLayout.minimumInteritemSpacing = minimumInteritemSpacing
+            self.collapsedLayout.minimumInteritemSpacing = minimumInteritemSpacing
+        }
+    }
+    
+    /// Layout minimum line spacing.
+    public var minimumLineSpacing: CGFloat = 0 {
+        didSet {
+            self.expandedLayout.minimumLineSpacing = minimumLineSpacing
+            self.collapsedLayout.minimumLineSpacing = minimumLineSpacing
+        }
+    }
+    
+    /// Layout section inset.
     public var sectionInset = UIEdgeInsets.zero {
         didSet {
             self.expandedLayout.sectionInset = sectionInset

@@ -18,8 +18,10 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         self.collectionView.backgroundColor = UIColor.white
         self.collectionView.clipsToBounds = true
-        self.collectionView.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        self.collectionView.minimumSectionSpacing = 20
+        self.collectionView.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        self.collectionView.minimumSectionSpacing = 1
+        self.collectionView.minimumInteritemSpacing = 1
+        self.collectionView.minimumLineSpacing = 1
         self.collectionView.register(
             CustomCollectionViewCell.self,
             forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier
@@ -83,7 +85,7 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - 30) / 2
+        let width = (collectionView.bounds.width - 3) / 2
         return CGSize(width: width, height: width)
     }
     
