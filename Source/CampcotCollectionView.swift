@@ -46,6 +46,14 @@ public class CampcotCollectionView: UICollectionView {
         }
     }
     
+    /// Layout section headers pin to visible bounds
+    public var sectionHeadersPinToVisibleBounds = false {
+        didSet {
+            self.expandedLayout.sectionHeadersPinToVisibleBounds = true
+            self.collapsedLayout.sectionHeadersPinToVisibleBounds = false
+        }
+    }
+    
     public init() {
         super.init(frame: .zero, collectionViewLayout: self.expandedLayout)
     }

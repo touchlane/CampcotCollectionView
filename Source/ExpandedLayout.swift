@@ -122,6 +122,9 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     }
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard isTransitingToCollapsed else {
+            return super.layoutAttributesForElements(in: rect)
+        }
         var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
         for attributes in headersAttributes {
             if attributes.frame.intersects(rect) {
@@ -139,6 +142,9 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     }
     
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard isTransitingToCollapsed else {
+            return super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
+        }
         return self.headersAttributes[indexPath.section]
     }
     

@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         self.collectionView.minimumSectionSpacing = 1
         self.collectionView.minimumInteritemSpacing = 1
         self.collectionView.minimumLineSpacing = 1
+        self.collectionView.sectionHeadersPinToVisibleBounds = true
         self.collectionView.register(
             CustomCollectionViewCell.self,
             forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier
