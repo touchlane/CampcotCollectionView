@@ -7,8 +7,9 @@
 //
 
 public class ExpandedLayout: UICollectionViewFlowLayout  {
-    public var targetSection: Int = 0
-    public var offsetCorrection: CGFloat = 0
+    var targetSection: Int = 0
+    var offsetCorrection: CGFloat = 0
+    var minimumSectionSpacing: CGFloat = 0
     
     private var isTransitingToCollapsed = false {
         didSet {
@@ -66,6 +67,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
             self.headersAttributes.append(attributes)
             self.contentHeight += height
+            self.contentHeight += self.sectionInset.top
             
             self.itemsAttributes.append([])
             let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
@@ -75,7 +77,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 if row % 2 == 0 {
                     attributes.frame = CGRect(
-                        x: 0,
+                        x: self.sectionInset.left,
                         y: contentHeight,
                         width: itemSize.width,
                         height: itemSize.height
@@ -83,7 +85,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 }
                 else {
                     attributes.frame = CGRect(
-                        x: self.collectionViewContentSize.width - itemSize.width,
+                        x: self.sectionInset.left + itemSize.width + self.minimumInteritemSpacing,
                         y: contentHeight,
                         width: itemSize.width,
                         height: itemSize.height
@@ -98,6 +100,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                     }
                 }
             }
+            self.contentHeight += self.sectionInset.bottom
         }
         print("Expanded content height \(contentHeight)")
     }
@@ -153,7 +156,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         for section in 0..<self.targetSection {
             let height = self.headersAttributes[section].frame.size.height
             targetOffset.y += height
-            
+            targetOffset.y += self.sectionInset.top
             let numberOfItems = self.itemsAttributes[section].count
             for row in 0..<numberOfItems {
                 let itemSize = self.itemsAttributes[section][row].frame.size
@@ -164,6 +167,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                     }
                 }
             }
+            targetOffset.y += self.sectionInset.bottom
         }
         let emptySpace = collectionView.bounds.size.height - (self.contentHeight - targetOffset.y)
         if emptySpace > 0 {
@@ -189,6 +193,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         var contentOffset = collectionView.contentOffset
         let previousItemsAttributes = self.itemsAttributes
         let visibleItemIndexPaths = collectionView.indexPathsForVisibleItems
+        let visibleSections = Set<Int>(visibleItemIndexPaths.map({ $0.section }))
         
         self.headersAttributes = []
         self.itemsAttributes = []
@@ -209,6 +214,17 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             self.headersAttributes.append(attributes)
             self.contentHeight += height
             
+            if visibleSections.contains(section) {
+                self.contentHeight += self.sectionInset.top
+            }
+            else {
+                self.contentHeight += self.minimumSectionSpacing / 2
+                if section < targetSection {
+                    contentOffset.y -= self.sectionInset.top
+                    contentOffset.y += self.minimumSectionSpacing
+                }
+            }
+            
             self.itemsAttributes.append([])
             let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
             for row in 0..<numberOfItems {
@@ -216,9 +232,10 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 var itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
                 itemSize.height = visibleItemIndexPaths.contains(indexPath) ? itemSize.height : 0
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                
                 if row % 2 == 0 {
                     attributes.frame = CGRect(
-                        x: 0,
+                        x: self.sectionInset.left,
                         y: contentHeight,
                         width: itemSize.width,
                         height: itemSize.height
@@ -226,7 +243,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 }
                 else {
                     attributes.frame = CGRect(
-                        x: self.collectionViewContentSize.width - itemSize.width,
+                        x: self.sectionInset.left + itemSize.width + self.minimumInteritemSpacing,
                         y: contentHeight,
                         width: itemSize.width,
                         height: itemSize.height
@@ -234,6 +251,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 }
                 attributes.isHidden = false
                 self.itemsAttributes[section].append(attributes)
+                
                 if row % 2 == 1 || row == numberOfItems - 1 {
                     self.contentHeight += itemSize.height
                     if !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
@@ -248,6 +266,16 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                     if row < numberOfItems - 1 && !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
                         contentOffset.y -= self.minimumLineSpacing
                     }
+                }
+            }
+            
+            if visibleSections.contains(section) {
+                self.contentHeight += self.sectionInset.bottom
+            }
+            else {
+                self.contentHeight += self.minimumSectionSpacing / 2
+                if section < targetSection {
+                    contentOffset.y -= self.sectionInset.bottom
                 }
             }
         }

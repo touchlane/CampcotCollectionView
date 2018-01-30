@@ -7,8 +7,13 @@
 //
 
 public class CollapsedLayout: UICollectionViewFlowLayout {
-    public var targetSection: Int = 0
-    public var offsetCorrection: CGFloat = 0
+    var targetSection: Int = 0
+    var offsetCorrection: CGFloat = 0
+    var minimumSectionSpacing: CGFloat = 0 {
+        didSet {
+            self.invalidateLayout()
+        }
+    }
     
     private var contentHeight: CGFloat = 0
     private var contentWidth: CGFloat {
@@ -21,6 +26,15 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
     
     override public var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
+    }
+    
+    override public var sectionInset: UIEdgeInsets {
+        get {
+            return super.sectionInset
+        }
+        set {
+            super.sectionInset = UIEdgeInsets(top: 0, left: newValue.left, bottom: 0, right: newValue.right)
+        }
     }
     
     private var headersAttributes: [UICollectionViewLayoutAttributes] = []
@@ -57,6 +71,7 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
             attributes.frame = CGRect(x: 0, y: self.contentHeight, width: width, height: height)
             self.headersAttributes.append(attributes)
             self.contentHeight += height
+            self.contentHeight += self.minimumSectionSpacing / 2
             
             self.itemsAttributes.append([])
             let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
@@ -66,16 +81,16 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 if row % 2 == 0 {
                     attributes.frame = CGRect(
-                        x: 0,
-                        y: self.contentHeight,
+                        x: self.sectionInset.left,
+                        y: contentHeight,
                         width: itemSize.width,
                         height: 0
                     )
                 }
                 else {
                     attributes.frame = CGRect(
-                        x: self.collectionViewContentSize.width - itemSize.width,
-                        y: self.contentHeight,
+                        x: self.sectionInset.left + itemSize.width + self.minimumInteritemSpacing,
+                        y: contentHeight,
                         width: itemSize.width,
                         height: 0
                     )
@@ -83,6 +98,7 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
                 attributes.isHidden = true
                 self.itemsAttributes[section].append(attributes)
             }
+            self.contentHeight += self.minimumSectionSpacing / 2
         }
         print("Collapsed content height \(contentHeight)")
     }
@@ -116,6 +132,7 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
         for section in 0..<self.targetSection {
             let height = self.headersAttributes[section].frame.size.height
             targetOffset.y += height
+            targetOffset.y += minimumSectionSpacing
         }
         let emptySpace = collectionView.bounds.size.height - (self.contentHeight - targetOffset.y)
         if emptySpace > 0 {

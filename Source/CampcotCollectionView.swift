@@ -7,11 +7,27 @@
 //
 
 public class CampcotCollectionView: UICollectionView {
-    let expandedLayout = ExpandedLayout()
-    let collapsedLayout = CollapsedLayout()
+    private let expandedLayout = ExpandedLayout()
+    private let collapsedLayout = CollapsedLayout()
     
     public var isExpanded: Bool {
         return self.collectionViewLayout === self.expandedLayout
+    }
+    
+    /// Space between section headers in collapsed state.
+    public var minimumSectionSpacing: CGFloat = 0 {
+        didSet {
+            self.expandedLayout.minimumSectionSpacing = minimumSectionSpacing
+            self.collapsedLayout.minimumSectionSpacing = minimumSectionSpacing
+        }
+    }
+    
+    /// Layout section inset
+    public var sectionInset = UIEdgeInsets.zero {
+        didSet {
+            self.expandedLayout.sectionInset = sectionInset
+            self.collapsedLayout.sectionInset = sectionInset
+        }
     }
     
     public init() {
