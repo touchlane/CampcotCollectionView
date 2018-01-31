@@ -227,7 +227,6 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             return
         }
         
-//        let visibleHeaderIndexPaths = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: UICollectionElementKindSectionHeader)
         var contentOffset = collectionView.contentOffset
         let previousItemsAttributes = self.itemsAttributes
         let visibleItemIndexPaths = collectionView.indexPathsForVisibleItems
@@ -331,7 +330,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             return []
         }
         
-        let visibleFrameHeight = collectionView.bounds.size.height
+        var visibleFrameHeight = collectionView.bounds.size.height + offsetCorrection
         
         var visibleItems: [IndexPath] = []
         var visibleContentHeight: CGFloat = 0
@@ -501,7 +500,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             return
         }
         
-        var contentOffset: CGFloat = 0
+        var contentOffset: CGFloat = self.offsetCorrection
         for section in 0..<targetSection {
             let headerHeigth = self.headersAttributes[section].frame.size.height
             contentOffset += headerHeigth
