@@ -100,7 +100,6 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
             }
             self.contentHeight += self.minimumSectionSpacing / 2
         }
-        print("Collapsed content height \(contentHeight)")
     }
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
