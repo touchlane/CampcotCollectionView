@@ -568,7 +568,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             for section in 0..<numberOfSections {
                 if visibleSections.contains(section) {
                     if self.headersAttributes[section].frame.origin.y < visibleContentOffset {
-                        if section <= self.targetSection && self.headersAttributes[section + 1].frame.origin.y > visibleContentOffset {
+                        if section <= self.targetSection && section < numberOfSections - 1 && self.headersAttributes[section + 1].frame.origin.y > visibleContentOffset {
                             if section != self.targetSection {
                                 self.headersAttributes[section].frame.origin.y = min(
                                     self.headersAttributes[section + 1].frame.origin.y - self.headersAttributes[section].frame.size.height,
