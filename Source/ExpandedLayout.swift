@@ -530,6 +530,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                     )
                 }
                 attributes.isHidden = false
+                // Sometimes cells overlap headers, the code below fixes it
+                attributes.transform3D = CATransform3DMakeTranslation(0, 0, -1)
                 self.itemsAttributes[section].append(attributes)
                 
                 if row % 2 == 1 || row == numberOfItems - 1 {
@@ -548,6 +550,24 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             }
             else {
                 self.contentHeight += self.minimumSectionSpacing / 2
+            }
+        }
+        
+        let visibleFrameHeight = collectionView.bounds.size.height + offsetCorrection
+        let visibleContentOffset = self.contentHeight - visibleFrameHeight
+        for section in 0..<numberOfSections {
+            if visibleSections.contains(section) {
+                if self.headersAttributes[section].frame.origin.y < visibleContentOffset {
+                    if section < numberOfSections - 1 && self.headersAttributes[section + 1].frame.origin.y > visibleContentOffset {
+                        self.headersAttributes[section].frame.origin.y = min(
+                            self.headersAttributes[section + 1].frame.origin.y - self.headersAttributes[section].frame.size.height,
+                            visibleContentOffset)
+                        let originY = self.headersAttributes[section].frame.origin.y
+                        for i in (0..<section).reversed() {
+                            self.headersAttributes[i].frame.origin.y = originY - self.headersAttributes[i].frame.size.height * CGFloat(section - i)
+                        }
+                    }
+                }
             }
         }
     }
