@@ -148,7 +148,19 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard isTransitingToCollapsed || isTransitingToExpanded else {
-            return super.layoutAttributesForElements(in: rect)
+            let superAttributes = super.layoutAttributesForElements(in: rect)
+            guard let attributes = superAttributes else {
+                return superAttributes
+            }
+            for elementAttributes in attributes {
+                guard elementAttributes.representedElementCategory == .supplementaryView else {
+                    continue
+                }
+                elementAttributes.frame.origin.y -= self.sectionHeadersPinToBoundsCorrection(
+                    proposedTopOffset: elementAttributes.frame.origin.y,
+                    estimatedTopOffset: self.headersAttributes[elementAttributes.indexPath.section].frame.origin.y)
+            }
+            return attributes
         }
         var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
         for attributes in headersAttributes {
@@ -166,32 +178,41 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         return visibleLayoutAttributes
     }
     
+    private func sectionHeadersPinToBoundsCorrection(proposedTopOffset: CGFloat, estimatedTopOffset: CGFloat) -> CGFloat {
+        guard let collectionViewContentOffset = self.collectionView?.contentOffset.y,
+            let collectionViewTopInset = self.collectionView?.contentInset.top,
+            self.sectionHeadersPinToVisibleBounds else {
+                return 0
+        }
+        
+        var topOffsetCorrection: CGFloat = 0
+        if proposedTopOffset <= estimatedTopOffset {
+            topOffsetCorrection = 0
+        }
+        else if proposedTopOffset - estimatedTopOffset <= collectionViewTopInset {
+            topOffsetCorrection = proposedTopOffset - estimatedTopOffset
+        }
+        else if proposedTopOffset - collectionViewContentOffset < collectionViewTopInset {
+            topOffsetCorrection = proposedTopOffset - collectionViewContentOffset
+        }
+        else if proposedTopOffset - estimatedTopOffset > collectionViewTopInset {
+            topOffsetCorrection = collectionViewTopInset
+        }
+        topOffsetCorrection = max(topOffsetCorrection, 0)
+        return topOffsetCorrection
+    }
+    
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard isTransitingToCollapsed || isTransitingToExpanded else {
             let attributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
-            guard let proposedTopOffset = attributes?.frame.origin.y,
-                let collectionViewContentOffset = self.collectionView?.contentOffset.y,
-                let collectionViewTopInset = self.collectionView?.contentInset.top,
-                self.sectionHeadersPinToVisibleBounds else {
-                    return attributes
+            
+            guard let proposedTopOffset = attributes?.frame.origin.y else {
+                return attributes
             }
             let estimatedTopOffset = self.headersAttributes[indexPath.section].frame.origin.y
-
-            var topOffsetCorrection: CGFloat = 0
-            if proposedTopOffset <= estimatedTopOffset {
-                topOffsetCorrection = 0
-            }
-            else if proposedTopOffset - estimatedTopOffset <= collectionViewTopInset {
-                topOffsetCorrection = proposedTopOffset - estimatedTopOffset
-            }
-            else if proposedTopOffset - collectionViewContentOffset < collectionViewTopInset {
-                topOffsetCorrection = proposedTopOffset - collectionViewContentOffset
-            }
-            else if proposedTopOffset - estimatedTopOffset > collectionViewTopInset {
-                topOffsetCorrection = collectionViewTopInset
-            }
-            topOffsetCorrection = max(topOffsetCorrection, 0)
-            attributes?.frame.origin.y -= topOffsetCorrection
+            attributes?.frame.origin.y -= self.sectionHeadersPinToBoundsCorrection(
+                proposedTopOffset: proposedTopOffset,
+                estimatedTopOffset: estimatedTopOffset)
             return attributes
         }
         return self.headersAttributes[indexPath.section]
@@ -315,7 +336,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 
                 if row % 2 == 1 || row == numberOfItems - 1 {
                     self.contentHeight += itemSize.height
-                    if !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
+                    if !visibleItemIndexPaths.contains(indexPath) && section <= targetSection {
                         contentOffset.y -= previousItemsAttributes[section][row].frame.size.height
                     }
                     if row < numberOfItems - 1 && visibleItemIndexPaths.contains(indexPath) {
