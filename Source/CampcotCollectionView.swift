@@ -49,8 +49,8 @@ public class CampcotCollectionView: UICollectionView {
     /// Layout section headers pin to visible bounds
     public var sectionHeadersPinToVisibleBounds = false {
         didSet {
-            self.expandedLayout.sectionHeadersPinToVisibleBounds = true
-            self.collapsedLayout.sectionHeadersPinToVisibleBounds = false
+            self.expandedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
+            self.collapsedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
         }
     }
     

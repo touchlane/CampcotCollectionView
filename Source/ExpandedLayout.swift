@@ -168,7 +168,31 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard isTransitingToCollapsed || isTransitingToExpanded else {
-            return super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
+            let attributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
+            guard let proposedTopOffset = attributes?.frame.origin.y,
+                let collectionViewContentOffset = self.collectionView?.contentOffset.y,
+                let collectionViewTopInset = self.collectionView?.contentInset.top,
+                self.sectionHeadersPinToVisibleBounds else {
+                    return attributes
+            }
+            let estimatedTopOffset = self.headersAttributes[indexPath.section].frame.origin.y
+
+            var topOffsetCorrection: CGFloat = 0
+            if proposedTopOffset <= estimatedTopOffset {
+                topOffsetCorrection = 0
+            }
+            else if proposedTopOffset - estimatedTopOffset <= collectionViewTopInset {
+                topOffsetCorrection = proposedTopOffset - estimatedTopOffset
+            }
+            else if proposedTopOffset - collectionViewContentOffset < collectionViewTopInset {
+                topOffsetCorrection = proposedTopOffset - collectionViewContentOffset
+            }
+            else if proposedTopOffset - estimatedTopOffset > collectionViewTopInset {
+                topOffsetCorrection = collectionViewTopInset
+            }
+            topOffsetCorrection = max(topOffsetCorrection, 0)
+            attributes?.frame.origin.y -= topOffsetCorrection
+            return attributes
         }
         return self.headersAttributes[indexPath.section]
     }
@@ -330,7 +354,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             return []
         }
         
-        var visibleFrameHeight = collectionView.bounds.size.height + offsetCorrection
+        let visibleFrameHeight = collectionView.bounds.size.height + offsetCorrection
         
         var visibleItems: [IndexPath] = []
         var visibleContentHeight: CGFloat = 0
