@@ -339,7 +339,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                     if !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
                         contentOffset.y -= previousItemsAttributes[section][row].frame.size.height
                     }
-                    if !visibleItemIndexPaths.contains(indexPath) && section == targetSection && row < numberOfItems - 1 {
+                    let hasVisibleItemsAfterCurrent = visibleItemIndexPaths.filter({ $0.section == section && $0.row > row }).count > 0
+                    if !visibleItemIndexPaths.contains(indexPath) && section == targetSection && hasVisibleItemsAfterCurrent {
                         contentOffset.y -= previousItemsAttributes[section][row].frame.size.height
                     }
                     if row < numberOfItems - 1 && visibleItemIndexPaths.contains(indexPath) {
@@ -348,7 +349,10 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                             contentHeight += self.minimumLineSpacing
                         }
                     }
-                    if row < numberOfItems - 1 && !visibleItemIndexPaths.contains(indexPath) && section <= targetSection {
+                    if row < numberOfItems - 1 && !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
+                        contentOffset.y -= self.minimumLineSpacing
+                    }
+                    if !visibleItemIndexPaths.contains(indexPath) && section == targetSection && hasVisibleItemsAfterCurrent {
                         contentOffset.y -= self.minimumLineSpacing
                     }
                 }
@@ -368,7 +372,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 let headerAttributes = self.headersAttributes[section]
                 if section == self.targetSection &&
                     self.contentHeight - contentOffset.y < collectionView.contentInset.top {
-                    
+
                     headerAttributes.frame.origin.y = min(self.contentHeight - headerAttributes.frame.size.height, contentOffset.y)
                     let originY = headerAttributes.frame.origin.y
                     for i in (0..<section).reversed() {
@@ -377,7 +381,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                     headerAttributes.frame.origin.y = originY
                 }
                 else if visibleSections.contains(section) && contentOffset.y > headerAttributes.frame.origin.y {
-                    
+
                     let originY = min(self.contentHeight - headerAttributes.frame.size.height, contentOffset.y)
                     for i in (0..<section).reversed() {
                         self.headersAttributes[i].frame.origin.y = originY - self.headersAttributes[i].frame.size.height * CGFloat(section - i)
