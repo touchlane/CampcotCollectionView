@@ -336,7 +336,10 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 
                 if row % 2 == 1 || row == numberOfItems - 1 {
                     self.contentHeight += itemSize.height
-                    if !visibleItemIndexPaths.contains(indexPath) && section <= targetSection {
+                    if !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
+                        contentOffset.y -= previousItemsAttributes[section][row].frame.size.height
+                    }
+                    if !visibleItemIndexPaths.contains(indexPath) && section == targetSection && row < numberOfItems - 1 {
                         contentOffset.y -= previousItemsAttributes[section][row].frame.size.height
                     }
                     if row < numberOfItems - 1 && visibleItemIndexPaths.contains(indexPath) {
@@ -345,7 +348,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                             contentHeight += self.minimumLineSpacing
                         }
                     }
-                    if row < numberOfItems - 1 && !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
+                    if row < numberOfItems - 1 && !visibleItemIndexPaths.contains(indexPath) && section <= targetSection {
                         contentOffset.y -= self.minimumLineSpacing
                     }
                 }
@@ -358,6 +361,23 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 self.contentHeight += self.minimumSectionSpacing / 2
                 if section < targetSection {
                     contentOffset.y -= self.sectionInset.bottom
+                }
+            }
+            
+            if sectionHeadersPinToVisibleBounds {
+                let headerAttributes = self.headersAttributes[section]
+                if section == self.targetSection &&
+                    self.contentHeight - contentOffset.y < collectionView.contentInset.top {
+                    
+                    headerAttributes.frame.origin.y = min(self.contentHeight - headerAttributes.frame.size.height, contentOffset.y)
+                }
+                else if visibleSections.contains(section) && contentOffset.y > headerAttributes.frame.origin.y {
+                    
+                    let originY = min(self.contentHeight - headerAttributes.frame.size.height, contentOffset.y)
+                    for i in (0..<section).reversed() {
+                        self.headersAttributes[i].frame.origin.y = originY - self.headersAttributes[i].frame.size.height * CGFloat(section - i)
+                    }
+                    headerAttributes.frame.origin.y = originY
                 }
             }
         }
