@@ -78,6 +78,7 @@ public class CampcotCollectionView: UICollectionView {
         self.collapsedLayout.targetSection = section
         self.collapsedLayout.offsetCorrection = offsetCorrection
         self.expandedLayout.targetSection = section
+        self.expandedLayout.offsetCorrection = offsetCorrection
         self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: completion)
     }
 }
