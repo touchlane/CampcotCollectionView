@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         self.collectionView.minimumSectionSpacing = 1
         self.collectionView.minimumInteritemSpacing = 1
         self.collectionView.minimumLineSpacing = 1
+        self.collectionView.contentInset = UIEdgeInsets(top: 150, left: 0, bottom: 0, right: 0)
+        self.collectionView.sectionHeadersPinToVisibleBounds = true
         self.collectionView.register(
             CustomCollectionViewCell.self,
             forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier
@@ -58,7 +60,7 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4 //Int(arc4random_uniform(7)) + 1
+        return 6 //Int(arc4random_uniform(7)) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -96,11 +98,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: CustomHeaderViewDelegate {
     func selectSection(section: Int) {
-        if self.collectionView.isExpanded {
-            self.collectionView.collapse(to: section, animated: true)
-        }
-        else {
-            self.collectionView.expand(from: section, animated: true)
-        }
+        self.collectionView.toggle(to: section, animated: true)
     }
 }

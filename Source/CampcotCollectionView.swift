@@ -10,6 +10,7 @@ public class CampcotCollectionView: UICollectionView {
     private let expandedLayout = ExpandedLayout()
     private let collapsedLayout = CollapsedLayout()
     
+    /// A Boolean value that determines whether the sections are expanded.
     public var isExpanded: Bool {
         return self.collectionViewLayout === self.expandedLayout
     }
@@ -46,7 +47,7 @@ public class CampcotCollectionView: UICollectionView {
         }
     }
     
-    /// Layout section headers pin to visible bounds
+    /// Layout section headers pin to visible bounds.
     public var sectionHeadersPinToVisibleBounds = false {
         didSet {
             self.expandedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
@@ -62,23 +63,37 @@ public class CampcotCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Expand all sections and pin section from params to top.
     public func expand(from section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
         guard !self.isExpanded else {
             return
         }
         self.expandedLayout.targetSection = section
         self.expandedLayout.offsetCorrection = offsetCorrection
+        self.collapsedLayout.targetSection = section
+        self.collapsedLayout.offsetCorrection = offsetCorrection
         self.setCollectionViewLayout(self.expandedLayout, animated: animated, completion: completion)
     }
     
+    /// Collapse all sections and pin section from params to top.
     public func collapse(to section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
         guard self.isExpanded else {
             return
         }
-        self.collapsedLayout.targetSection = section
-        self.collapsedLayout.offsetCorrection = offsetCorrection
         self.expandedLayout.targetSection = section
         self.expandedLayout.offsetCorrection = offsetCorrection
+        self.collapsedLayout.targetSection = section
+        self.collapsedLayout.offsetCorrection = offsetCorrection
         self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: completion)
+    }
+    
+    /// Change sections mode to opposite.
+    public func toggle(to section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+        if self.isExpanded {
+            self.collapse(to: section, offsetCorrection: offsetCorrection, animated: animated, completion: completion)
+        }
+        else {
+            self.expand(from: section, offsetCorrection: offsetCorrection, animated: animated, completion: completion)
+        }
     }
 }
