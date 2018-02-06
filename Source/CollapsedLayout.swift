@@ -146,6 +146,12 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
         if emptySpace > 0 {
             targetOffset.y = targetOffset.y - emptySpace
         }
+        if self.contentHeight < self.collectionViewContentSize.height {
+            let freeSpace = self.collectionViewContentSize.height - (targetOffset.y - self.offsetCorrection)
+            if freeSpace > 0 {
+                targetOffset.y = self.offsetCorrection
+            }
+        }
         return targetOffset
     }
 }
