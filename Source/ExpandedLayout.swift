@@ -630,6 +630,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             
             contentOffset += self.sectionInset.bottom
         }
+        let maxContentOffset = self.collectionViewContentSize.height - collectionView.bounds.size.height
+        contentOffset = min(contentOffset, maxContentOffset)
         collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: contentOffset), animated: false)
     }
 }
