@@ -72,7 +72,11 @@ public class CampcotCollectionView: UICollectionView {
         self.expandedLayout.offsetCorrection = offsetCorrection
         self.collapsedLayout.targetSection = section
         self.collapsedLayout.offsetCorrection = offsetCorrection
-        self.setCollectionViewLayout(self.expandedLayout, animated: animated, completion: completion)
+        self.setCollectionViewLayout(self.expandedLayout, animated: animated, completion: { completed in
+            DispatchQueue.main.async(execute: {
+                completion?(completed)
+            })
+        })
     }
     
     /// Collapse all sections and pin section from params to top.
@@ -84,7 +88,11 @@ public class CampcotCollectionView: UICollectionView {
         self.expandedLayout.offsetCorrection = offsetCorrection
         self.collapsedLayout.targetSection = section
         self.collapsedLayout.offsetCorrection = offsetCorrection
-        self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: completion)
+        self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: { completed in
+            DispatchQueue.main.async(execute: {
+                completion?(completed)
+            })
+        })
     }
     
     /// Change sections mode to opposite.
