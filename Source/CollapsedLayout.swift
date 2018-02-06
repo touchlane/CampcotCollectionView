@@ -114,11 +114,20 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
     }
     
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard self.headersAttributes.indices.contains(indexPath.section) else {
+            return super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
+        }
         return self.headersAttributes[indexPath.section]
     }
     
     
     override public func layoutAttributesForItem(at indexPath: IndexPath) ->  UICollectionViewLayoutAttributes? {
+        guard self.itemsAttributes.indices.contains(indexPath.section) else {
+            return super.layoutAttributesForItem(at: indexPath)
+        }
+        guard self.itemsAttributes[indexPath.section].indices.contains(indexPath.row) else {
+            return super.layoutAttributesForItem(at: indexPath)
+        }
         return self.itemsAttributes[indexPath.section][indexPath.row]
     }
     

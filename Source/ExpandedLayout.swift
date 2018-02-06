@@ -156,6 +156,9 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 guard elementAttributes.representedElementCategory == .supplementaryView else {
                     continue
                 }
+                guard self.headersAttributes.indices.contains(elementAttributes.indexPath.section) else {
+                    continue
+                }
                 elementAttributes.frame.origin.y -= self.sectionHeadersPinToBoundsCorrection(
                     proposedTopOffset: elementAttributes.frame.origin.y,
                     estimatedTopOffset: self.headersAttributes[elementAttributes.indexPath.section].frame.origin.y)
@@ -203,6 +206,9 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     }
     
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard self.headersAttributes.indices.contains(indexPath.section) else {
+            return super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
+        }
         guard isTransitingToCollapsed || isTransitingToExpanded else {
             let attributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
             
@@ -220,6 +226,12 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     
     
     override public func layoutAttributesForItem(at indexPath: IndexPath) ->  UICollectionViewLayoutAttributes? {
+        guard self.itemsAttributes.indices.contains(indexPath.section) else {
+            return super.layoutAttributesForItem(at: indexPath)
+        }
+        guard self.itemsAttributes[indexPath.section].indices.contains(indexPath.row) else {
+            return super.layoutAttributesForItem(at: indexPath)
+        }
         return self.itemsAttributes[indexPath.section][indexPath.row]
     }
     
