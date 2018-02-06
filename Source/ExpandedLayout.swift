@@ -39,7 +39,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     }
     
     override public var collectionViewContentSize: CGSize {
-        return CGSize(width: contentWidth, height: contentHeight)
+        return CGSize(width: contentWidth, height: max(contentHeight, self.collectionView?.bounds.size.height ?? 0))
     }
     
     private var headersAttributes: [UICollectionViewLayoutAttributes] = []
@@ -264,7 +264,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 targetOffset.y += self.minimumSectionSpacing
             }
         }
-        let emptySpace = collectionView.bounds.size.height - (self.contentHeight - targetOffset.y)
+        let emptySpace = collectionView.bounds.size.height - (self.collectionViewContentSize.height - targetOffset.y)
         if emptySpace > 0 {
             targetOffset.y = targetOffset.y - emptySpace
         }
