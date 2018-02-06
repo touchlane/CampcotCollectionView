@@ -120,6 +120,7 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
         return self.headersAttributes[indexPath.section]
     }
     
+    
     override public func layoutAttributesForItem(at indexPath: IndexPath) ->  UICollectionViewLayoutAttributes? {
         guard self.itemsAttributes.indices.contains(indexPath.section) else {
             return super.layoutAttributesForItem(at: indexPath)
@@ -131,20 +132,20 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
     }
     
     override public func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+        guard let collectionView = self.collectionView else {
+            return proposedContentOffset
+        }
         var targetOffset = proposedContentOffset
-        targetOffset.y = 0
+        targetOffset.y = offsetCorrection
         for section in 0..<self.targetSection {
             let height = self.headersAttributes[section].frame.size.height
             targetOffset.y += height
             targetOffset.y += minimumSectionSpacing
         }
-        if self.contentHeight < self.collectionViewContentSize.height {
-            let emptySpace = self.collectionViewContentSize.height - targetOffset.y
-            if emptySpace > 0 {
-                targetOffset.y = 0
-            }
+        let emptySpace = collectionView.bounds.size.height - (self.collectionViewContentSize.height - targetOffset.y)
+        if emptySpace > 0 {
+            targetOffset.y = targetOffset.y - emptySpace
         }
-        targetOffset.y += self.offsetCorrection
         return targetOffset
     }
 }
