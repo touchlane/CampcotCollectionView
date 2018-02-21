@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86EB284F203DE4920052BFA2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86EB284D203DE4920052BFA2 /* Launch Screen.storyboard */; };
 		DD35D958201B5F390049ED03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D957201B5F390049ED03 /* AppDelegate.swift */; };
 		DD35D95A201B5F390049ED03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D959201B5F390049ED03 /* ViewController.swift */; };
 		DD35D95F201B5F390049ED03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD35D95E201B5F390049ED03 /* Images.xcassets */; };
-		DD35D97D201B63C70049ED03 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD35D97C201B63C70049ED03 /* LaunchScreen.xib */; };
 		DD35D980201B63F70049ED03 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97E201B63F70049ED03 /* CustomHeaderView.swift */; };
 		DD35D981201B63F70049ED03 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */; };
 		DDFB5C7A201F36BC00F8E164 /* CampcotCollectionView.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = DDFB5C75201F367A00F8E164 /* CampcotCollectionView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -55,13 +55,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		86EB284D203DE4920052BFA2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DD35D954201B5F390049ED03 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD35D957201B5F390049ED03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD35D959201B5F390049ED03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DD35D95E201B5F390049ED03 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DD35D963201B5F390049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD35D96E201B62BA0049ED03 /* CampcotCollectionView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CampcotCollectionView.xcodeproj; path = ../CampcotCollectionView.xcodeproj; sourceTree = "<group>"; };
-		DD35D97C201B63C70049ED03 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		DD35D97E201B63F70049ED03 /* CustomHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +102,7 @@
 				DD35D97F201B63F70049ED03 /* CustomCollectionViewCell.swift */,
 				DD35D957201B5F390049ED03 /* AppDelegate.swift */,
 				DD35D95E201B5F390049ED03 /* Images.xcassets */,
-				DD35D97C201B63C70049ED03 /* LaunchScreen.xib */,
+				86EB284D203DE4920052BFA2 /* Launch Screen.storyboard */,
 				DD35D969201B5FB10049ED03 /* Supporting Files */,
 			);
 			path = Source;
@@ -209,8 +209,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86EB284F203DE4920052BFA2 /* Launch Screen.storyboard in Resources */,
 				DD35D95F201B5F390049ED03 /* Images.xcassets in Resources */,
-				DD35D97D201B63C70049ED03 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
