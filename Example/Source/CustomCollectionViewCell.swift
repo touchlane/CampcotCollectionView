@@ -44,7 +44,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     private func activateTextLabelConstraints(view: UIView, anchorView: UIView) {
         NSLayoutConstraint.activate([
             view.centerXAnchor.constraint(equalTo: anchorView.centerXAnchor),
-            view.centerYAnchor.constraint(equalTo: anchorView.centerYAnchor)]
-        )
+            view.centerYAnchor.constraint(equalTo: anchorView.centerYAnchor)
+            ])
     }
 }

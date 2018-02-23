@@ -64,7 +64,10 @@ public class CampcotCollectionView: UICollectionView {
     }
     
     /// Expand all sections and pin section from params to top.
-    public func expand(from section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+    public func expand(from section: Int,
+                       offsetCorrection: CGFloat = 0,
+                       animated: Bool,
+                       completion: ((Bool) -> Void)? = nil) {
         guard !self.isExpanded else {
             return
         }
@@ -80,7 +83,10 @@ public class CampcotCollectionView: UICollectionView {
     }
     
     /// Collapse all sections and pin section from params to top.
-    public func collapse(to section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+    public func collapse(to section: Int,
+                         offsetCorrection: CGFloat = 0,
+                         animated: Bool,
+                         completion: ((Bool) -> Void)? = nil) {
         guard self.isExpanded else {
             return
         }
@@ -96,12 +102,21 @@ public class CampcotCollectionView: UICollectionView {
     }
     
     /// Change sections mode to opposite.
-    public func toggle(to section: Int, offsetCorrection: CGFloat = 0, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+    public func toggle(to section: Int,
+                       offsetCorrection: CGFloat = 0,
+                       animated: Bool,
+                       completion: ((Bool) -> Void)? = nil) {
         if self.isExpanded {
-            self.collapse(to: section, offsetCorrection: offsetCorrection, animated: animated, completion: completion)
+            self.collapse(to: section,
+                          offsetCorrection: offsetCorrection,
+                          animated: animated,
+                          completion: completion)
         }
         else {
-            self.expand(from: section, offsetCorrection: offsetCorrection, animated: animated, completion: completion)
+            self.expand(from: section,
+                        offsetCorrection: offsetCorrection,
+                        animated: animated,
+                        completion: completion)
         }
     }
 }
