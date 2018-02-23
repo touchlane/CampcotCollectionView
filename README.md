@@ -67,7 +67,7 @@ public var isExpanded: Bool { get }
 ```
 
 Expands all the sections. Pins a section at index `section` to the top of view bounds.  
-`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is 0.  
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.  
 `animated` - if `true` expands sections with animation.  
 `completion` - callback for animation. 
 ```swift
@@ -78,7 +78,7 @@ public func expand(from section: Int,
 ```
 
 Collapses all the sections. Pins a section at index `section` to the top of view bounds.  
-`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is 0.  
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.  
 `animated` - if `true` collapses sections with animation.  
 `completion` - callback for animation. 
 ```swift
@@ -89,7 +89,7 @@ public func collapse(to section: Int,
 ```
 
 Toggles current state from collapsed to expaned and vise versa. Pins a section at index `section` to the top of view bounds.  
-`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is 0.  
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.  
 `animated` - if `true` toggles sections with animation.  
 `completion` - callback for animation. 
 ```swift
@@ -98,3 +98,4 @@ public func toggle(to section: Int,
                    animated: Bool,
                    completion: ((Bool) -> Void)? = default)
 ```
+___
