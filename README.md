@@ -6,6 +6,8 @@
 [![License](https://img.shields.io/cocoapods/l/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)
 [![Platform](https://img.shields.io/cocoapods/p/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)
 
+This library provides a custom `UICollectionView` that allows to expand and collapse sections. Provides a simple API to manage collection view appearance.
+
 ![CampcotCollectionView](Example/Assets/campcot.gif)
 
 # Requirements
