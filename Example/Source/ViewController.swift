@@ -10,19 +10,23 @@ import UIKit
 import CampcotCollectionView
 
 class ViewController: UIViewController {
-    
     let collectionView = CampcotCollectionView()
+    
+    let interitemSpacing: CGFloat = 10
+    let lineSpacing: CGFloat = 10
+    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    
+    let backgroundColor = UIColor(red: 189 / 255, green: 195 / 255, blue: 199 / 255, alpha: 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
-        self.collectionView.backgroundColor = UIColor.white
+        self.view.backgroundColor = backgroundColor
+        self.collectionView.backgroundColor = backgroundColor
         self.collectionView.clipsToBounds = true
-        self.collectionView.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        self.collectionView.sectionInset = sectionInsets
         self.collectionView.minimumSectionSpacing = 1
-        self.collectionView.minimumInteritemSpacing = 1
-        self.collectionView.minimumLineSpacing = 1
-        self.collectionView.contentInset = UIEdgeInsets(top: 150, left: 0, bottom: 0, right: 0)
+        self.collectionView.minimumInteritemSpacing = interitemSpacing
+        self.collectionView.minimumLineSpacing = lineSpacing
         self.collectionView.sectionHeadersPinToVisibleBounds = true
         self.collectionView.register(
             CustomCollectionViewCell.self,
@@ -77,17 +81,15 @@ extension ViewController: UICollectionViewDataSource {
             withReuseIdentifier: CustomHeaderView.reuseIdentifier,
             for: indexPath) as! CustomHeaderView
         view.section = indexPath.section
-        view.text = "Section: \(indexPath.section)"
+        view.text = "section: \(indexPath.section)"
         view.delegate = self
-        view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
         return view
     }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - 3) / 2
+        let width = (collectionView.bounds.width - sectionInsets.left - sectionInsets.right - interitemSpacing) / 2
         return CGSize(width: width, height: width)
     }
     

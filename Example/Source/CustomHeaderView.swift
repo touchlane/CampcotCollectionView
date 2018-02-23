@@ -14,8 +14,7 @@ protocol CustomHeaderViewDelegate: class {
 
 class CustomHeaderView: UICollectionReusableView {
     static let reuseIdentifier = "CustomHeaderView"
-    
-    private let internalBackgroundColor = UIColor(red: 214.0 / 255.0, green: 218.0 / 255.0, blue: 231.0 / 255.0, alpha: 1)
+    private let internalBackgroundColor = UIColor.purple
     private let textLeadingOffset: CGFloat = 20
     private let textLabel = UILabel()
     
@@ -31,6 +30,9 @@ class CustomHeaderView: UICollectionReusableView {
         super.init(frame: .zero)
         self.backgroundColor = self.internalBackgroundColor
         self.textLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.textLabel.textColor = .white
+        self.textLabel.textAlignment = .center
+        self.textLabel.font = UIFont.boldSystemFont(ofSize: 24)
         self.addSubview(self.textLabel)
         self.activateTextLabelConstraints(view: self.textLabel, anchorView: self)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnView(sender:)))
@@ -51,15 +53,18 @@ class CustomHeaderView: UICollectionReusableView {
         super.apply(layoutAttributes)
         self.layoutIfNeeded()
     }
-    
-    private func activateTextLabelConstraints(view: UIView, anchorView: UIView) {
+}
+
+private typealias CustomHeaderViewPrivate = CustomHeaderView
+private extension CustomHeaderViewPrivate {
+    func activateTextLabelConstraints(view: UIView, anchorView: UIView) {
         NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: anchorView.leadingAnchor, constant: self.textLeadingOffset),
-            view.centerYAnchor.constraint(equalTo: anchorView.centerYAnchor)]
-        )
+            view.centerXAnchor.constraint(equalTo: anchorView.centerXAnchor),
+            view.centerYAnchor.constraint(equalTo: anchorView.centerYAnchor)
+            ])
     }
     
-    @objc private func tapOnView(sender: UIGestureRecognizer) {
+    @objc func tapOnView(sender: UIGestureRecognizer) {
         guard let section = self.section else {
             return
         }

@@ -11,7 +11,7 @@ import UIKit
 class CustomCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "CustomCell"
     
-    private let internalBackgroundColor = UIColor(red: 59.0 / 255.0, green: 128.0 / 255.0, blue: 144.0 / 255.0, alpha: 1)
+    private let internalBackgroundColor = UIColor(red: 61 / 255, green: 86 / 255, blue: 166 / 255, alpha: 1)
     private let textLabel = UILabel()
     
     var text: String? {
@@ -24,7 +24,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         self.clipsToBounds = true
         self.backgroundColor = self.internalBackgroundColor
+        self.layer.cornerRadius = 10
+        self.textLabel.font = UIFont.boldSystemFont(ofSize: 24)
         self.textLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.textLabel.textColor = .white
         self.addSubview(self.textLabel)
         self.activateTextLabelConstraints(view: self.textLabel, anchorView: self)
     }

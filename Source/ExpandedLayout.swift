@@ -180,31 +180,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         }
         return visibleLayoutAttributes
     }
-    
-    private func sectionHeadersPinToBoundsCorrection(proposedTopOffset: CGFloat, estimatedTopOffset: CGFloat) -> CGFloat {
-        guard let collectionViewContentOffset = self.collectionView?.contentOffset.y,
-            let collectionViewTopInset = self.collectionView?.contentInset.top,
-            self.sectionHeadersPinToVisibleBounds else {
-                return 0
-        }
-        
-        var topOffsetCorrection: CGFloat = 0
-        if proposedTopOffset <= estimatedTopOffset {
-            topOffsetCorrection = 0
-        }
-        else if proposedTopOffset - estimatedTopOffset <= collectionViewTopInset {
-            topOffsetCorrection = proposedTopOffset - estimatedTopOffset
-        }
-        else if proposedTopOffset - collectionViewContentOffset < collectionViewTopInset {
-            topOffsetCorrection = proposedTopOffset - collectionViewContentOffset
-        }
-        else if proposedTopOffset - estimatedTopOffset > collectionViewTopInset {
-            topOffsetCorrection = collectionViewTopInset
-        }
-        topOffsetCorrection = max(topOffsetCorrection, 0)
-        return topOffsetCorrection
-    }
-    
+   
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard self.headersAttributes.indices.contains(indexPath.section) else {
             return super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
@@ -405,84 +381,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         collectionView.setContentOffset(contentOffset, animated: false)
     }
     
-    private func determineVisibleIndexPaths() -> [IndexPath] {
-        guard let collectionView = self.collectionView else {
-            return []
-        }
-        guard let delegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout else {
-            return []
-        }
-        guard let dataSource = collectionView.dataSource else {
-            return []
-        }
-        
-        let visibleFrameHeight = collectionView.bounds.size.height + offsetCorrection
-        
-        var visibleItems: [IndexPath] = []
-        var visibleContentHeight: CGFloat = 0
-        
-        guard visibleContentHeight < visibleFrameHeight else {
-            return visibleItems
-        }
-        
-        let numberOfSections = dataSource.numberOfSections!(in: collectionView)
-        for section in self.targetSection..<numberOfSections {
-            let headerHeight = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: section).height
-            visibleContentHeight += headerHeight
-            visibleContentHeight += self.sectionInset.top
-            
-            guard visibleContentHeight < visibleFrameHeight else {
-                return visibleItems
-            }
-            
-            let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
-            for row in 0..<numberOfItems {
-                let indexPath = IndexPath(row: row, section: section)
-                visibleItems.append(indexPath)
-                let itemHeight = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
-                
-                if row % 2 == 1 || row == numberOfItems - 1 {
-                    visibleContentHeight += itemHeight
-                    if row < numberOfItems - 1 {
-                        visibleContentHeight += self.minimumLineSpacing
-                    }
-                    guard visibleContentHeight < visibleFrameHeight else {
-                        return visibleItems
-                    }
-                }
-            }
-            visibleContentHeight += self.sectionInset.bottom
-        }
-        
-        for section in (0..<self.targetSection).reversed() {
-            visibleContentHeight += self.sectionInset.bottom
-            let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
-            for row in 0..<numberOfItems {
-                let indexPath = IndexPath(row: row, section: section)
-                visibleItems.append(indexPath)
-                let itemHeight = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
-                
-                if row % 2 == 1 {
-                    visibleContentHeight += itemHeight
-                    if row > 0 {
-                        visibleContentHeight += self.minimumLineSpacing
-                    }
-                    guard visibleContentHeight < visibleFrameHeight else {
-                        return visibleItems
-                    }
-                }
-            }
-            visibleContentHeight += self.sectionInset.top
-            let headerHeight = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: section).height
-            visibleContentHeight += headerHeight
-            
-            guard visibleContentHeight < visibleFrameHeight else {
-                return visibleItems
-            }
-        }
-        
-        return visibleItems
-    }
+    
     
     public func expandVisibleSections() {
         guard let collectionView = self.collectionView else {
@@ -596,17 +495,117 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             }
         }
     }
+}
+
+private typealias ExpandedLayoutPrivate = ExpandedLayout
+private extension ExpandedLayoutPrivate {
+    
+    
+    private func sectionHeadersPinToBoundsCorrection(proposedTopOffset: CGFloat,
+                                                     estimatedTopOffset: CGFloat) -> CGFloat {
+        guard let collectionViewContentOffset = self.collectionView?.contentOffset.y,
+            let collectionViewTopInset = self.collectionView?.contentInset.top,
+            self.sectionHeadersPinToVisibleBounds else {
+                return 0
+        }
+        
+        var topOffsetCorrection: CGFloat = 0
+        if proposedTopOffset <= estimatedTopOffset {
+            topOffsetCorrection = 0
+        }
+        else if proposedTopOffset - estimatedTopOffset <= collectionViewTopInset {
+            topOffsetCorrection = proposedTopOffset - estimatedTopOffset
+        }
+        else if proposedTopOffset - collectionViewContentOffset < collectionViewTopInset {
+            topOffsetCorrection = proposedTopOffset - collectionViewContentOffset
+        }
+        else if proposedTopOffset - estimatedTopOffset > collectionViewTopInset {
+            topOffsetCorrection = collectionViewTopInset
+        }
+        topOffsetCorrection = max(topOffsetCorrection, 0)
+        return topOffsetCorrection
+    }
+    
+    
+    private func determineVisibleIndexPaths() -> [IndexPath] {
+        guard let collectionView = self.collectionView,
+            let delegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
+            let dataSource = collectionView.dataSource else {
+            return []
+        }
+        
+        let visibleFrameHeight = collectionView.bounds.size.height + offsetCorrection
+        
+        var visibleItems: [IndexPath] = []
+        var visibleContentHeight: CGFloat = 0
+        
+        guard visibleContentHeight < visibleFrameHeight else {
+            return visibleItems
+        }
+        
+        let numberOfSections = dataSource.numberOfSections!(in: collectionView)
+        for section in self.targetSection..<numberOfSections {
+            let headerHeight = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: section).height
+            visibleContentHeight += headerHeight
+            visibleContentHeight += self.sectionInset.top
+            
+            guard visibleContentHeight < visibleFrameHeight else {
+                return visibleItems
+            }
+            
+            let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
+            for row in 0..<numberOfItems {
+                let indexPath = IndexPath(row: row, section: section)
+                visibleItems.append(indexPath)
+                let itemHeight = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
+                
+                if row % 2 == 1 || row == numberOfItems - 1 {
+                    visibleContentHeight += itemHeight
+                    if row < numberOfItems - 1 {
+                        visibleContentHeight += self.minimumLineSpacing
+                    }
+                    guard visibleContentHeight < visibleFrameHeight else {
+                        return visibleItems
+                    }
+                }
+            }
+            visibleContentHeight += self.sectionInset.bottom
+        }
+        
+        for section in (0..<self.targetSection).reversed() {
+            visibleContentHeight += self.sectionInset.bottom
+            let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
+            for row in 0..<numberOfItems {
+                let indexPath = IndexPath(row: row, section: section)
+                visibleItems.append(indexPath)
+                let itemHeight = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
+                
+                if row % 2 == 1 {
+                    visibleContentHeight += itemHeight
+                    if row > 0 {
+                        visibleContentHeight += self.minimumLineSpacing
+                    }
+                    guard visibleContentHeight < visibleFrameHeight else {
+                        return visibleItems
+                    }
+                }
+            }
+            visibleContentHeight += self.sectionInset.top
+            let headerHeight = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: section).height
+            visibleContentHeight += headerHeight
+            
+            guard visibleContentHeight < visibleFrameHeight else {
+                return visibleItems
+            }
+        }
+        
+        return visibleItems
+    }
     
     private func setRealOffset() {
-        guard let collectionView = self.collectionView else {
-            return
-        }
-        
-        guard let delegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout else {
-            return
-        }
-        
-        guard let dataSource = collectionView.dataSource else {
+        guard let collectionView = self.collectionView,
+            let delegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
+            let dataSource = collectionView.dataSource else {
             return
         }
         
@@ -632,6 +631,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         }
         let maxContentOffset = self.collectionViewContentSize.height - collectionView.bounds.size.height
         contentOffset = min(contentOffset, maxContentOffset)
-        collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: contentOffset), animated: false)
+        collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: contentOffset),
+                                        animated: false)
     }
 }
