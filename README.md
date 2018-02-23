@@ -6,6 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)
 [![Platform](https://img.shields.io/cocoapods/p/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)
 
+![CampcotCollectionView](Example/Assets/campcot.gif)
 
 # Requirements
 
@@ -41,4 +42,59 @@ Then, run the following command:
 
 ```swift
 import CampcotCollectionView
+```
+
+1. Create CollectionView
+```swift
+let campcotCollectionView = CampcotCollectionView()
+```
+2. Add `campcotCollectionView` to view hierarchy.
+3. Call `toggle` method on `campcotCollectionView`.
+```swift
+public func toggle(to section: Int,
+                   offsetCorrection: CGFloat = default,
+                   animated: Bool,
+                   completion: ((Bool) -> Void)? = default)
+```
+
+# Documentation
+
+### CampcotCollectionView
+
+A Boolean value that determines whether the sections are expanded.
+```swift
+public var isExpanded: Bool { get }
+```
+
+Expands all the sections. Pins a section at index `section` to the top of view bounds.  
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is 0.  
+`animated` - if `true` expands sections with animation.  
+`completion` - callback for animation. 
+```swift
+public func expand(from section: Int,
+                   offsetCorrection: CGFloat = default,
+                   animated: Bool, 
+                   completion: ((Bool) -> Void)? = default)
+```
+
+Collapses all the sections. Pins a section at index `section` to the top of view bounds.  
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is 0.  
+`animated` - if `true` collapses sections with animation.  
+`completion` - callback for animation. 
+```swift
+public func collapse(to section: Int,
+                     offsetCorrection: CGFloat = default,
+                     animated: Bool,
+                     completion: ((Bool) -> Void)? = default)
+```
+
+Toggles current state from collapsed to expaned and vise versa. Pins a section at index `section` to the top of view bounds.  
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is 0.  
+`animated` - if `true` toggles sections with animation.  
+`completion` - callback for animation. 
+```swift
+public func toggle(to section: Int,
+                   offsetCorrection: CGFloat = default,
+                   animated: Bool,
+                   completion: ((Bool) -> Void)? = default)
 ```
