@@ -1,4 +1,4 @@
-![LOGO](https://github.com/touchlane/Docs/blob/master/Assets/logo.svg)
+![LOGO](https://github.com/touchlane/CampcotCollectionView/blob/master/Assets/logo.svg)
 
 [![Build Status](https://travis-ci.org/touchlane/CampcotCollectionView.svg?branch=master)](https://travis-ci.org/touchlane/CampcotCollectionView)
 [![codecov.io](https://codecov.io/gh/touchlane/CampcotCollectionView/branch/master/graphs/badge.svg)](https://codecov.io/gh/codecov/CampcotCollectionView/branch/master)
