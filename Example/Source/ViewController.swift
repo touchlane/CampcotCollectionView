@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         )
         self.collectionView.register(
             CustomHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: CustomHeaderView.reuseIdentifier
         )
         self.collectionView.delegate = self
