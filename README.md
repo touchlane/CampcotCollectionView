@@ -14,7 +14,7 @@ This library provides a custom `UICollectionView` that allows to expand and coll
 
 * iOS 9.0+
 * Xcode 9.0+
-* Swift 4.0+
+* Swift 4.2+
 
 # Installation
 
@@ -68,21 +68,21 @@ A Boolean value that determines whether the sections are expanded.
 public var isExpanded: Bool { get }
 ```
 
-Expands all the sections. Pins a section at index `section` to the top of view bounds.  
-`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.  
-`animated` - if `true` expands sections with animation.  
-`completion` - callback for animation. 
+Expands all the sections. Pins a section at index `section` to the top of view bounds.
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.
+`animated` - if `true` expands sections with animation.
+`completion` - callback for animation.
 ```swift
 public func expand(from section: Int,
                    offsetCorrection: CGFloat = default,
-                   animated: Bool, 
+                   animated: Bool,
                    completion: ((Bool) -> Void)? = default)
 ```
 
-Collapses all the sections. Pins a section at index `section` to the top of view bounds.  
-`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.  
-`animated` - if `true` collapses sections with animation.  
-`completion` - callback for animation. 
+Collapses all the sections. Pins a section at index `section` to the top of view bounds.
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.
+`animated` - if `true` collapses sections with animation.
+`completion` - callback for animation.
 ```swift
 public func collapse(to section: Int,
                      offsetCorrection: CGFloat = default,
@@ -90,10 +90,10 @@ public func collapse(to section: Int,
                      completion: ((Bool) -> Void)? = default)
 ```
 
-Toggles current state from collapsed to expaned and vise versa. Pins a section at index `section` to the top of view bounds.  
-`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.  
-`animated` - if `true` toggles sections with animation.  
-`completion` - callback for animation. 
+Toggles current state from collapsed to expaned and vise versa. Pins a section at index `section` to the top of view bounds.
+`offsetCorrection` - the offset for pinned section from the top. Default value of `offsetCorrection` is `0`.
+`animated` - if `true` toggles sections with animation.
+`completion` - callback for animation.
 ```swift
 public func toggle(to section: Int,
                    offsetCorrection: CGFloat = default,
