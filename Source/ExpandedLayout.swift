@@ -147,6 +147,10 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
     }
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard self.collectionView?.dataSource != nil else {
+            return nil
+        }
+        
         guard isTransitingToCollapsed || isTransitingToExpanded else {
             let superAttributes = super.layoutAttributesForElements(in: rect)
             guard let attributes = superAttributes else {

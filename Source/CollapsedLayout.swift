@@ -103,6 +103,10 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
     }
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard self.collectionView?.dataSource != nil else {
+            return nil
+        }
+        
         var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
         
         for attributes in headersAttributes {
