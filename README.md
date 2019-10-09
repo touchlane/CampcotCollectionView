@@ -13,8 +13,8 @@ This library provides a custom `UICollectionView` that allows to expand and coll
 # Requirements
 
 * iOS 9.0+
-* Xcode 9.0+
-* Swift 4.2+
+* Xcode 10.2+
+* Swift 5.0+
 
 # Installation
 
