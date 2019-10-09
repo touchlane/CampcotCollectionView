@@ -81,7 +81,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             let width = headerSize.width
             
             let indexPath = IndexPath(row: 0, section: section)
-            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
+            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
             attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
             self.headersAttributes.append(attributes)
             self.contentHeight += height
@@ -281,7 +281,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             
             let indexPath = IndexPath(row: 0, section: section)
             let attributes = UICollectionViewLayoutAttributes(
-                forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                 with: indexPath
             )
             attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
@@ -415,7 +415,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             
             let indexPath = IndexPath(row: 0, section: section)
             let attributes = UICollectionViewLayoutAttributes(
-                forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                 with: indexPath
             )
             attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
