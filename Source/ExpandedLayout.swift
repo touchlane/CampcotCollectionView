@@ -498,7 +498,12 @@ private extension ExpandedLayoutPrivate {
             topOffsetCorrection = 0
         }
         else if proposedTopOffset - estimatedTopOffset <= collectionViewTopInset {
-            topOffsetCorrection = proposedTopOffset - estimatedTopOffset
+            if proposedTopOffset - collectionViewContentOffset >= collectionViewTopInset {
+                topOffsetCorrection = proposedTopOffset - estimatedTopOffset
+            } else {
+                let newProposedTopOffset = proposedTopOffset - (collectionViewContentOffset - estimatedTopOffset)
+                topOffsetCorrection = min(newProposedTopOffset, proposedTopOffset) - estimatedTopOffset
+            }
         }
         else if proposedTopOffset - collectionViewContentOffset < collectionViewTopInset {
             topOffsetCorrection = proposedTopOffset - collectionViewContentOffset
