@@ -79,22 +79,16 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
                 let indexPath = IndexPath(row: row, section: section)
                 let itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                if row % 2 == 0 {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: 0
-                    )
-                }
-                else {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left + itemSize.width + self.minimumInteritemSpacing,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: 0
-                    )
-                }
+
+                let columnsCount = Int(contentWidth / itemSize.width)
+                let column = row % columnsCount
+
+                attributes.frame = CGRect(
+                    x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
+                    y: contentHeight,
+                    width: itemSize.width,
+                    height: 0
+                )
                 attributes.isHidden = true
                 self.itemsAttributes[section].append(attributes)
             }

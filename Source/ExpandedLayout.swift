@@ -93,28 +93,23 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 let indexPath = IndexPath(row: row, section: section)
                 let itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                if row % 2 == 0 {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: itemSize.height
-                    )
-                }
-                else {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left + itemSize.width + self.minimumInteritemSpacing,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: itemSize.height
-                    )
-                }
+
+                let columnsCount = Int(contentWidth / itemSize.width)
+                let column = row % columnsCount
+                attributes.frame = CGRect(
+                    x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
+                    y: contentHeight,
+                    width: itemSize.width,
+                    height: itemSize.height
+                )
+
                 attributes.isHidden = false
                 self.itemsAttributes[section].append(attributes)
-                if row % 2 == 1 || row == numberOfItems - 1 {
+
+                if column == columnsCount - 1 || row == numberOfItems - 1 {
                     self.contentHeight += itemSize.height
                     if row < numberOfItems - 1 {
-                        contentHeight += self.minimumLineSpacing
+                        contentHeight += minimumLineSpacing
                     }
                 }
             }
@@ -203,8 +198,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         }
         return self.headersAttributes[indexPath.section]
     }
-    
-    
+
     override public func layoutAttributesForItem(at indexPath: IndexPath) ->  UICollectionViewLayoutAttributes? {
         guard self.itemsAttributes.indices.contains(indexPath.section) else {
             return super.layoutAttributesForItem(at: indexPath)
@@ -229,7 +223,11 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
             let numberOfItems = self.itemsAttributes[section].count
             for row in 0..<numberOfItems {
                 let itemSize = self.itemsAttributes[section][row].frame.size
-                if row % 2 == 1 || row == numberOfItems - 1 {
+
+                let columnsCount = Int(self.contentWidth / itemSize.width)
+                let column = row % columnsCount
+
+                if column == columnsCount - 1 || row == numberOfItems - 1 {
                     sectionContentHeight += itemSize.height
                     targetOffset.y += itemSize.height
                     if row < numberOfItems - 1 && itemSize.height > 0 {
@@ -306,27 +304,20 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 var itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
                 itemSize.height = visibleItemIndexPaths.contains(indexPath) ? itemSize.height : 0
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                
-                if row % 2 == 0 {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: itemSize.height
-                    )
-                }
-                else {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left + itemSize.width + self.minimumInteritemSpacing,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: itemSize.height
-                    )
-                }
+
+                let columnsCount = Int(self.contentWidth / itemSize.width)
+                let column = row % columnsCount
+                attributes.frame = CGRect(
+                    x: self.sectionInset.left + CGFloat(column) * (itemSize.width + self.minimumInteritemSpacing),
+                    y: contentHeight,
+                    width: itemSize.width,
+                    height: itemSize.height
+                )
+
                 attributes.isHidden = false
                 self.itemsAttributes[section].append(attributes)
-                
-                if row % 2 == 1 || row == numberOfItems - 1 {
+
+                if column == columnsCount - 1 || row == numberOfItems - 1 {
                     self.contentHeight += itemSize.height
                     if !visibleItemIndexPaths.contains(indexPath) && section < targetSection {
                         contentOffset.y -= previousItemsAttributes[section][row].frame.size.height
@@ -384,9 +375,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         }
         collectionView.setContentOffset(contentOffset, animated: false)
     }
-    
-    
-    
+
     public func expandVisibleSections() {
         guard let collectionView = self.collectionView else {
             return
@@ -436,29 +425,22 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 var itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
                 itemSize.height = visibleItemIndexPaths.contains(indexPath) ? itemSize.height : 0
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                
-                if row % 2 == 0 {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: itemSize.height
-                    )
-                }
-                else {
-                    attributes.frame = CGRect(
-                        x: self.sectionInset.left + itemSize.width + self.minimumInteritemSpacing,
-                        y: contentHeight,
-                        width: itemSize.width,
-                        height: itemSize.height
-                    )
-                }
+
+                let columnsCount = Int(self.contentWidth / itemSize.width)
+                let column = row % columnsCount
+                attributes.frame = CGRect(
+                    x: self.sectionInset.left + CGFloat(column) * (itemSize.width + self.minimumInteritemSpacing),
+                    y: contentHeight,
+                    width: itemSize.width,
+                    height: itemSize.height
+                )
+
                 attributes.isHidden = false
                 // Sometimes cells overlap headers, the code below fixes it
                 attributes.transform3D = CATransform3DMakeTranslation(0, 0, -1)
                 self.itemsAttributes[section].append(attributes)
-                
-                if row % 2 == 1 || row == numberOfItems - 1 {
+
+                if column == columnsCount - 1 || row == numberOfItems - 1 {
                     self.contentHeight += itemSize.height
                     if row < numberOfItems - 1 && visibleItemIndexPaths.contains(indexPath) {
                         let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
@@ -503,8 +485,6 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
 
 private typealias ExpandedLayoutPrivate = ExpandedLayout
 private extension ExpandedLayoutPrivate {
-    
-    
     private func sectionHeadersPinToBoundsCorrection(proposedTopOffset: CGFloat,
                                                      estimatedTopOffset: CGFloat) -> CGFloat {
         guard let collectionViewContentOffset = self.collectionView?.contentOffset.y,
@@ -518,7 +498,12 @@ private extension ExpandedLayoutPrivate {
             topOffsetCorrection = 0
         }
         else if proposedTopOffset - estimatedTopOffset <= collectionViewTopInset {
-            topOffsetCorrection = proposedTopOffset - estimatedTopOffset
+            if proposedTopOffset - collectionViewContentOffset >= collectionViewTopInset {
+                topOffsetCorrection = proposedTopOffset - estimatedTopOffset
+            } else {
+                let newProposedTopOffset = proposedTopOffset - (collectionViewContentOffset - estimatedTopOffset)
+                topOffsetCorrection = min(newProposedTopOffset, proposedTopOffset) - estimatedTopOffset
+            }
         }
         else if proposedTopOffset - collectionViewContentOffset < collectionViewTopInset {
             topOffsetCorrection = proposedTopOffset - collectionViewContentOffset
@@ -529,8 +514,7 @@ private extension ExpandedLayoutPrivate {
         topOffsetCorrection = max(topOffsetCorrection, 0)
         return topOffsetCorrection
     }
-    
-    
+
     private func determineVisibleIndexPaths() -> [IndexPath] {
         guard let collectionView = self.collectionView,
             let delegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
@@ -561,10 +545,13 @@ private extension ExpandedLayoutPrivate {
             for row in 0..<numberOfItems {
                 let indexPath = IndexPath(row: row, section: section)
                 visibleItems.append(indexPath)
-                let itemHeight = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
-                
-                if row % 2 == 1 || row == numberOfItems - 1 {
-                    visibleContentHeight += itemHeight
+                let itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
+
+                let columnsCount = Int(self.contentWidth / itemSize.width)
+                let column = row % columnsCount
+
+                if column == columnsCount - 1 || row == numberOfItems - 1 {
+                    visibleContentHeight += itemSize.height
                     if row < numberOfItems - 1 {
                         visibleContentHeight += self.minimumLineSpacing
                     }
@@ -582,10 +569,13 @@ private extension ExpandedLayoutPrivate {
             for row in 0..<numberOfItems {
                 let indexPath = IndexPath(row: row, section: section)
                 visibleItems.append(indexPath)
-                let itemHeight = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
-                
-                if row % 2 == 1 {
-                    visibleContentHeight += itemHeight
+                let itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
+
+                let columnsCount = Int(self.contentWidth / itemSize.width)
+                let column = row % columnsCount
+
+                if column == columnsCount - 1 {
+                    visibleContentHeight += itemSize.height
                     if row > 0 {
                         visibleContentHeight += self.minimumLineSpacing
                     }
@@ -622,9 +612,13 @@ private extension ExpandedLayoutPrivate {
             let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
             for row in 0..<numberOfItems {
                 let indexPath = IndexPath(row: row, section: section)
-                let itemHeight = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
-                if row % 2 == 1 || row == numberOfItems - 1 {
-                    contentOffset += itemHeight
+                let itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
+
+                let columnsCount = Int(self.contentWidth / itemSize.width)
+                let column = row % columnsCount
+
+                if column == columnsCount - 1 || row == numberOfItems - 1 {
+                    contentOffset += itemSize.height
                     if row < numberOfItems - 1 {
                         contentOffset += self.minimumLineSpacing
                     }

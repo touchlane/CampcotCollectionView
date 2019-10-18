@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     
     let backgroundColor = UIColor(red: 189 / 255, green: 195 / 255, blue: 199 / 255, alpha: 1)
 
+    let itemsInRow = 2
+    var itemsInSection: [Int: Int] = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = backgroundColor
@@ -64,7 +67,12 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        if let numberOfItems = itemsInSection[section] {
+            return numberOfItems
+        }
+        let numberOfItems = Int.random(in: 1...6)
+        itemsInSection[section] = numberOfItems
+        return numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,7 +97,7 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - sectionInsets.left - sectionInsets.right - interitemSpacing) / 2
+        let width = (collectionView.bounds.width - sectionInsets.left - sectionInsets.right - interitemSpacing * CGFloat(itemsInRow - 1)) / CGFloat(itemsInRow)
         return CGSize(width: width, height: width)
     }
     
