@@ -37,12 +37,28 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         let insets = collectionView.contentInset
         return collectionView.bounds.width - (insets.left + insets.right)
     }
+
+    public var contentSizeAdjustmentBehavior: ContentSizeAdjustmentBehavior = .normal {
+        didSet {
+            self.invalidateLayout()
+        }
+    }
     
     override public var collectionViewContentSize: CGSize {
-        let collectionViewHeight = self.collectionView?.bounds.size.height ?? 0
-        let collectionViewBottomInset = self.collectionView?.contentInset.bottom ?? 0
-        let contentHeight = max(self.contentHeight, collectionViewHeight - collectionViewBottomInset)
-        return CGSize(width: self.contentWidth, height: contentHeight)
+        switch self.contentSizeAdjustmentBehavior {
+        case .normal:
+            return CGSize(width: self.contentWidth, height: self.contentHeight)
+        case .fitHeight(let adjustInsets):
+            var adjustedContentHeight = self.collectionView?.bounds.height ?? 0
+            if adjustInsets.contains(.top) {
+                adjustedContentHeight -= self.collectionView?.contentInset.top ?? 0
+            }
+            if adjustInsets.contains(.bottom) {
+                adjustedContentHeight -= self.collectionView?.contentInset.bottom ?? 0
+            }
+            let contentHeight = max(self.contentHeight, adjustedContentHeight)
+            return CGSize(width: self.contentWidth, height: contentHeight)
+        }
     }
     
     private var headersAttributes: [UICollectionViewLayoutAttributes] = []

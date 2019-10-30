@@ -14,6 +14,7 @@
 		DD35D98A201B66B40049ED03 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DD35D987201B66B40049ED03 /* LICENSE */; };
 		DD35D98B201B66B40049ED03 /* CampcotCollectionView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DD35D988201B66B40049ED03 /* CampcotCollectionView.podspec */; };
 		DD35D98C201B66B40049ED03 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DD35D989201B66B40049ED03 /* README.md */; };
+		DDC6199F2369C68100B6981E /* ContentSizeAdjustmentAdjustmentBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC6199E2369C68100B6981E /* ContentSizeAdjustmentAdjustmentBehavior.swift */; };
 		DDFB5C80201F451E00F8E164 /* CollapsedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB5C7F201F451E00F8E164 /* CollapsedLayout.swift */; };
 		DDFB5C82201F522B00F8E164 /* CampcotCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFB5C81201F522B00F8E164 /* CampcotCollectionView.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		DD35D987201B66B40049ED03 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DD35D988201B66B40049ED03 /* CampcotCollectionView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CampcotCollectionView.podspec; sourceTree = "<group>"; };
 		DD35D989201B66B40049ED03 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DDC6199E2369C68100B6981E /* ContentSizeAdjustmentAdjustmentBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizeAdjustmentAdjustmentBehavior.swift; sourceTree = "<group>"; };
 		DDFB5C7F201F451E00F8E164 /* CollapsedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedLayout.swift; sourceTree = "<group>"; };
 		DDFB5C81201F522B00F8E164 /* CampcotCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampcotCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 				DDFB5C81201F522B00F8E164 /* CampcotCollectionView.swift */,
 				DD35D949201B5E280049ED03 /* ExpandedLayout.swift */,
 				DDFB5C7F201F451E00F8E164 /* CollapsedLayout.swift */,
+				DDC6199E2369C68100B6981E /* ContentSizeAdjustmentAdjustmentBehavior.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				DDFB5C82201F522B00F8E164 /* CampcotCollectionView.swift in Sources */,
 				DD35D94A201B5E280049ED03 /* ExpandedLayout.swift in Sources */,
 				DDFB5C80201F451E00F8E164 /* CollapsedLayout.swift in Sources */,
+				DDC6199F2369C68100B6981E /* ContentSizeAdjustmentAdjustmentBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
