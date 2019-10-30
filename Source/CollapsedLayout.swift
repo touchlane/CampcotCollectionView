@@ -25,7 +25,10 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
     }
     
     override public var collectionViewContentSize: CGSize {
-        return CGSize(width: contentWidth, height: max(contentHeight, self.collectionView?.bounds.size.height ?? 0))
+        let collectionViewHeight = self.collectionView?.bounds.size.height ?? 0
+        let collectionViewBottomInset = self.collectionView?.contentInset.bottom ?? 0
+        let contentHeight = max(self.contentHeight, collectionViewHeight - collectionViewBottomInset)
+        return CGSize(width: self.contentWidth, height: contentHeight)
     }
     
     override public var sectionInset: UIEdgeInsets {
