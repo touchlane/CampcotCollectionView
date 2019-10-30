@@ -21,6 +21,9 @@ public enum ContentSizeAdjustmentBehavior {
         public static let all: Inset = [.top, .bottom]
     }
 
+    /// Content size depends only on content.
     case normal
+
+    /// Content size can't be less than collection view frame without adjust insets.
     case fitHeight(adjustInsets: Inset)
 }

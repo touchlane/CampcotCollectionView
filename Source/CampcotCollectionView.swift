@@ -55,6 +55,7 @@ public class CampcotCollectionView: UICollectionView {
         }
     }
 
+    /// Content size calculation rules.
     public var contentSizeAdjustmentBehavior: ContentSizeAdjustmentBehavior = .normal {
         didSet {
             self.expandedLayout.contentSizeAdjustmentBehavior = contentSizeAdjustmentBehavior
