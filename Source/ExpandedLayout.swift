@@ -49,12 +49,15 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
         case .normal:
             return CGSize(width: self.contentWidth, height: self.contentHeight)
         case .fitHeight(let adjustInsets):
-            var adjustedContentHeight = self.collectionView?.bounds.height ?? 0
+            guard let collectionView = self.collectionView else {
+                return CGSize(width: self.contentWidth, height: self.contentHeight)
+            }
+            var adjustedContentHeight = collectionView.bounds.height
             if adjustInsets.contains(.top) {
-                adjustedContentHeight -= self.collectionView?.contentInset.top ?? 0
+                adjustedContentHeight -= collectionView.contentInset.top
             }
             if adjustInsets.contains(.bottom) {
-                adjustedContentHeight -= self.collectionView?.contentInset.bottom ?? 0
+                adjustedContentHeight -= collectionView.contentInset.bottom
             }
             let contentHeight = max(self.contentHeight, adjustedContentHeight)
             return CGSize(width: self.contentWidth, height: contentHeight)
