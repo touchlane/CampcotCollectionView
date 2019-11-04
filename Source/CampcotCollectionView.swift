@@ -54,6 +54,14 @@ public class CampcotCollectionView: UICollectionView {
             self.collapsedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
         }
     }
+
+    /// Content size calculation rules.
+    public var contentSizeAdjustmentBehavior: ContentSizeAdjustmentBehavior = .normal {
+        didSet {
+            self.expandedLayout.contentSizeAdjustmentBehavior = contentSizeAdjustmentBehavior
+            self.collapsedLayout.contentSizeAdjustmentBehavior = contentSizeAdjustmentBehavior
+        }
+    }
     
     public init() {
         super.init(frame: .zero, collectionViewLayout: self.expandedLayout)

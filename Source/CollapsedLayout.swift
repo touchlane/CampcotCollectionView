@@ -23,9 +23,31 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
         let insets = collectionView.contentInset
         return collectionView.bounds.width - (insets.left + insets.right)
     }
+
+    public var contentSizeAdjustmentBehavior: ContentSizeAdjustmentBehavior = .normal {
+        didSet {
+            self.invalidateLayout()
+        }
+    }
     
     override public var collectionViewContentSize: CGSize {
-        return CGSize(width: contentWidth, height: max(contentHeight, self.collectionView?.bounds.size.height ?? 0))
+        switch self.contentSizeAdjustmentBehavior {
+        case .normal:
+            return CGSize(width: self.contentWidth, height: self.contentHeight)
+        case .fitHeight(let adjustInsets):
+            guard let collectionView = self.collectionView else {
+                return CGSize(width: self.contentWidth, height: self.contentHeight)
+            }
+            var adjustedContentHeight = collectionView.bounds.height
+            if adjustInsets.contains(.top) {
+                adjustedContentHeight -= collectionView.contentInset.top
+            }
+            if adjustInsets.contains(.bottom) {
+                adjustedContentHeight -= collectionView.contentInset.bottom
+            }
+            let contentHeight = max(self.contentHeight, adjustedContentHeight)
+            return CGSize(width: self.contentWidth, height: contentHeight)
+        }
     }
     
     override public var sectionInset: UIEdgeInsets {
