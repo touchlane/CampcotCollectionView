@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CampcotCollectionView'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = 'CapmcotCollectionView is custom UICollectionView that allows to expand and collapse sections.'
   s.description      = 'This library provides a custom UICollectionView that allows to expand and collapse sections.'   \
                        'It provides a simple API to manage collection view appearance.'

@@ -1,3 +1,7 @@
+# Changelog for CampcotCollectionView 0.0.6
+### Added
+* `contentSizeAdjustmentBehavior` property allows to manage content size calculation.
+
 # Changelog for CampcotCollectionView 0.0.5
 ### Added
 * Layout supports more than 2 items in row.
