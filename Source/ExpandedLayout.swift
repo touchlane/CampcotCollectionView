@@ -264,7 +264,7 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 targetOffset.y += self.minimumSectionSpacing
             }
         }
-        let emptySpace = collectionView.bounds.size.height - (self.collectionViewContentSize.height - targetOffset.y)
+        let emptySpace = collectionView.bounds.size.height - (max(self.contentHeight, collectionView.bounds.size.height) - targetOffset.y)
         if emptySpace > 0 {
             targetOffset.y = targetOffset.y - emptySpace
         }
@@ -649,7 +649,7 @@ private extension ExpandedLayoutPrivate {
             
             contentOffset += self.sectionInset.bottom
         }
-        let maxContentOffset = self.collectionViewContentSize.height - collectionView.bounds.size.height
+        let maxContentOffset = max(self.contentHeight, collectionView.bounds.size.height) - collectionView.bounds.size.height
         contentOffset = min(contentOffset, maxContentOffset)
         collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: contentOffset),
                                         animated: false)
