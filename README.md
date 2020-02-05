@@ -1,5 +1,6 @@
 ![LOGO](https://github.com/touchlane/CampcotCollectionView/blob/master/Assets/logo.svg)
 
+![Language](https://img.shields.io/badge/swift-5.0-orange.svg)
 [![Build Status](https://travis-ci.org/touchlane/CampcotCollectionView.svg?branch=master)](https://travis-ci.org/touchlane/CampcotCollectionView)
 [![codecov](https://codecov.io/gh/touchlane/CampcotCollectionView/branch/master/graph/badge.svg)](https://codecov.io/gh/touchlane/CampcotCollectionView)
 [![Version](https://img.shields.io/cocoapods/v/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)
