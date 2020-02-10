@@ -43,6 +43,8 @@ Then, run the following command:
 
 # Usage
 
+### Manual Setup
+
 ```swift
 import CampcotCollectionView
 ```
@@ -59,6 +61,13 @@ public func toggle(to section: Int,
                    animated: Bool,
                    completion: ((Bool) -> Void)? = default)
 ```
+### Storyboard Setup
+
+1. Add UICollectionView to your Storyboard.
+2. In `Identity Inspector` set the `Class` property to `CampcotCollectionView`.
+3. Open `Attributes Inspector` and set the `Layout` property to `Custom`. Bellow set `Class` property to either `ExpandedLayout` or `CollapsedLayout`.
+4. Create outlet for your collectionView.
+5. Set the settings for collectionView in  `Attributes Inspector` or manualy.
 
 # Documentation
 

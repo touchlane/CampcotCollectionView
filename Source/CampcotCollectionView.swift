@@ -7,15 +7,16 @@
 //
 
 public class CampcotCollectionView: UICollectionView {
-    private let expandedLayout = ExpandedLayout()
-    private let collapsedLayout = CollapsedLayout()
-    
+    private var expandedLayout: ExpandedLayout!
+    private var collapsedLayout: CollapsedLayout!
+
     /// A Boolean value that determines whether the sections are expanded.
     public var isExpanded: Bool {
         return self.collectionViewLayout === self.expandedLayout
     }
     
     /// Space between section headers in collapsed state.
+    @IBInspectable
     public var minimumSectionSpacing: CGFloat = 0 {
         didSet {
             self.expandedLayout.minimumSectionSpacing = minimumSectionSpacing
@@ -24,6 +25,7 @@ public class CampcotCollectionView: UICollectionView {
     }
     
     /// Layout minimum interitem spaceign.
+    @IBInspectable
     public var minimumInteritemSpacing: CGFloat = 0 {
         didSet {
             self.expandedLayout.minimumInteritemSpacing = minimumInteritemSpacing
@@ -32,6 +34,7 @@ public class CampcotCollectionView: UICollectionView {
     }
     
     /// Layout minimum line spacing.
+    @IBInspectable
     public var minimumLineSpacing: CGFloat = 0 {
         didSet {
             self.expandedLayout.minimumLineSpacing = minimumLineSpacing
@@ -46,9 +49,38 @@ public class CampcotCollectionView: UICollectionView {
             self.collapsedLayout.sectionInset = sectionInset
         }
     }
-    
+
+    @IBInspectable
+    private var topInset: CGFloat = 0 {
+        didSet {
+            sectionInset.top = topInset
+        }
+    }
+
+    @IBInspectable
+    private var bottomInset: CGFloat = 0 {
+        didSet {
+            sectionInset.bottom = bottomInset
+        }
+    }
+
+    @IBInspectable
+    private var leftInset: CGFloat = 0 {
+        didSet {
+            sectionInset.left = leftInset
+        }
+    }
+
+    @IBInspectable
+    private var rightInset: CGFloat = 0 {
+        didSet {
+            sectionInset.right = rightInset
+        }
+    }
+
     /// Layout section headers pin to visible bounds.
-    public var sectionHeadersPinToVisibleBounds = false {
+    @IBInspectable
+    public var sectionHeadersPinToVisibleBounds: Bool = false {
         didSet {
             self.expandedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
             self.collapsedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
@@ -64,11 +96,28 @@ public class CampcotCollectionView: UICollectionView {
     }
     
     public init() {
+        expandedLayout = ExpandedLayout()
+        collapsedLayout = CollapsedLayout()
         super.init(frame: .zero, collectionViewLayout: self.expandedLayout)
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        if let expandedLayout = self.collectionViewLayout as? ExpandedLayout {
+            /// When collectionViewLayout is expanded
+            self.expandedLayout = expandedLayout
+            self.collapsedLayout = CollapsedLayout()
+        } else if let collapsedLayout = self.collectionViewLayout as? CollapsedLayout {
+            /// When collectionViewLayout is collapsed
+            self.expandedLayout = ExpandedLayout()
+            self.collapsedLayout = collapsedLayout
+        } else {
+            /// By default, if collectionViewLayout was not set neither expanded nor collapsed
+            self.expandedLayout = ExpandedLayout()
+            self.collapsedLayout = CollapsedLayout()
+
+            self.collectionViewLayout = self.expandedLayout /// Default layout
+        }
     }
     
     /// Expand all sections and pin section from params to top.
