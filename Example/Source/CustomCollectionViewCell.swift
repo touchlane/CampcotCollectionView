@@ -22,6 +22,15 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        self.commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+
+    private func commonInit() {
         self.clipsToBounds = true
         self.backgroundColor = self.internalBackgroundColor
         self.layer.cornerRadius = 10
@@ -30,10 +39,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
         self.textLabel.textColor = .white
         self.addSubview(self.textLabel)
         self.activateTextLabelConstraints(view: self.textLabel, anchorView: self)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {

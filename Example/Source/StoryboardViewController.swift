@@ -13,43 +13,18 @@ class StoryboardViewController: UIViewController {
 
     @IBOutlet weak var collectionView: CampcotCollectionView!
 
-    let backgroundColor = UIColor(red: 189 / 255, green: 195 / 255, blue: 199 / 255, alpha: 1)
-
     let itemsInRow = 2
     var itemsInSection: [Int: Int] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = backgroundColor
-        self.collectionView.backgroundColor = backgroundColor
-        self.collectionView.clipsToBounds = true
-        self.collectionView.register(
-            CustomCollectionViewCell.self,
-            forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier
-        )
-        self.collectionView.register(
-            CustomHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: CustomHeaderView.reuseIdentifier
-        )
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.collectionView)
-        self.activateCollectionViewConstraints(view: self.collectionView, anchorView: self.view)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
-    }
-
-    private func activateCollectionViewConstraints(view: UIView, anchorView: UIView) {
-        NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: anchorView.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: anchorView.trailingAnchor),
-            view.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor),
-            view.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor)
-            ])
     }
 }
 
