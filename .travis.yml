@@ -2,6 +2,10 @@ os: osx
 osx_image: xcode11
 language: objective-c
 
+before_install:
+- gem install cocoapods
+- pod repo add-cdn trunk 'https://cdn.cocoapods.org/'
+
 deploy:
   provider: script
   script: ./scripts/deploy.sh
