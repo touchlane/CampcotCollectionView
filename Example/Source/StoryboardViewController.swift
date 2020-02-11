@@ -16,10 +16,6 @@ class StoryboardViewController: UIViewController {
     let itemsInRow = 2
     var itemsInSection: [Int: Int] = [:]
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
