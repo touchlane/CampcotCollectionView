@@ -65,8 +65,8 @@ public func toggle(to section: Int,
 
 1. Add UICollectionView to your Storyboard.
 2. In `Identity Inspector` set the `Class` property to `CampcotCollectionView`.
-3. Open `Attributes Inspector` and set the `Layout` property to `Custom`. Bellow set `Class` property to either `ExpandedLayout` or `CollapsedLayout`.
-4. Create outlet for your collectionView.
+3. Open `Attributes Inspector` and set the `Layout` property to `Custom`. Set `Class` property to either `ExpandedLayout` or `CollapsedLayout`.
+4. Create outlet for your collectionView and don't forger to set datasource and delegate.
 5. Set the settings for collectionView in  `Attributes Inspector` or manualy.
 
 # Documentation

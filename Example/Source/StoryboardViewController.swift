@@ -18,9 +18,6 @@ class StoryboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
