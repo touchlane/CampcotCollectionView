@@ -1,3 +1,12 @@
+# Changelog for CampcotCollectionView 0.0.7
+### Fixed
+* Fixed crash with storyboard realization.
+
+### Added
+* Storyboard support.
+* Properties in `Attributes Inspector` for `CampcotCollectionView`.
+* Example for storyboard realization.
+
 # Changelog for CampcotCollectionView 0.0.6
 ### Added
 * `contentSizeAdjustmentBehavior` property allows to manage content size calculation.
