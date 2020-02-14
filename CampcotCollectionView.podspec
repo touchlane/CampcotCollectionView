@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CampcotCollectionView'
-  s.version          = '0.0.6'
+  s.version          = '0.0.7'
   s.summary          = 'CapmcotCollectionView is custom UICollectionView that allows to expand and collapse sections.'
   s.description      = 'This library provides a custom UICollectionView that allows to expand and collapse sections.'   \
                        'It provides a simple API to manage collection view appearance.'
@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/touchlane/CampcotCollectionView.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.source_files = 'Source/*.swift'
+  s.swift_versions = ['5.0']
 end

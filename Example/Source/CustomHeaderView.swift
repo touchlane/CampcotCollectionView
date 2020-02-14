@@ -28,6 +28,15 @@ class CustomHeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        self.commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+
+    private func commonInit() {
         self.backgroundColor = self.internalBackgroundColor
         self.textLabel.translatesAutoresizingMaskIntoConstraints = false
         self.textLabel.textColor = .white
@@ -37,10 +46,6 @@ class CustomHeaderView: UICollectionReusableView {
         self.activateTextLabelConstraints(view: self.textLabel, anchorView: self)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnView(sender:)))
         self.addGestureRecognizer(tapRecognizer)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {

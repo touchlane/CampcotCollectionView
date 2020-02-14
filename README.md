@@ -1,5 +1,6 @@
 ![LOGO](https://github.com/touchlane/CampcotCollectionView/blob/master/Assets/logo.svg)
 
+![Language](https://img.shields.io/badge/swift-5.0-orange.svg)
 [![Build Status](https://travis-ci.org/touchlane/CampcotCollectionView.svg?branch=master)](https://travis-ci.org/touchlane/CampcotCollectionView)
 [![codecov](https://codecov.io/gh/touchlane/CampcotCollectionView/branch/master/graph/badge.svg)](https://codecov.io/gh/touchlane/CampcotCollectionView)
 [![Version](https://img.shields.io/cocoapods/v/CampcotCollectionView.svg?style=flat)](http://cocoapods.org/pods/CampcotCollectionView)
@@ -42,6 +43,8 @@ Then, run the following command:
 
 # Usage
 
+### Manual Setup
+
 ```swift
 import CampcotCollectionView
 ```
@@ -58,6 +61,14 @@ public func toggle(to section: Int,
                    animated: Bool,
                    completion: ((Bool) -> Void)? = default)
 ```
+### Storyboard Setup
+
+1. Add UICollectionView to your Storyboard.
+2. In `Identity Inspector` set the `Class` property to `CampcotCollectionView`.
+3. Open `Attributes Inspector` and set the `Layout` property to `Custom`. Set `Class` property to either `ExpandedLayout` or `CollapsedLayout`.
+4. Create outlet for your collectionView.
+5. Set datasource and delegate for collectionView.
+5. Set the settings for collectionView in  `Attributes Inspector` or manualy.
 
 # Documentation
 
