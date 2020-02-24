@@ -14,7 +14,7 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
             self.invalidateLayout()
         }
     }
-    
+
     private var contentHeight: CGFloat = 0
     private var contentWidth: CGFloat {
         guard let collectionView = self.collectionView else {
@@ -26,17 +26,17 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
 
     public var contentSizeAdjustmentBehavior: ContentSizeAdjustmentBehavior = .normal {
         didSet {
-            self.invalidateLayout()
+            invalidateLayout()
         }
     }
-    
-    override public var collectionViewContentSize: CGSize {
-        switch self.contentSizeAdjustmentBehavior {
+
+    public override var collectionViewContentSize: CGSize {
+        switch contentSizeAdjustmentBehavior {
         case .normal:
-            return CGSize(width: self.contentWidth, height: self.contentHeight)
+            return CGSize(width: contentWidth, height: contentHeight)
         case .fitHeight(let adjustInsets):
             guard let collectionView = self.collectionView else {
-                return CGSize(width: self.contentWidth, height: self.contentHeight)
+                return CGSize(width: contentWidth, height: self.contentHeight)
             }
             var adjustedContentHeight = collectionView.bounds.height
             if adjustInsets.contains(.top) {
@@ -46,40 +46,40 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
                 adjustedContentHeight -= collectionView.contentInset.bottom
             }
             let contentHeight = max(self.contentHeight, adjustedContentHeight)
-            return CGSize(width: self.contentWidth, height: contentHeight)
+            return CGSize(width: contentWidth, height: contentHeight)
         }
     }
-    
-    override public var sectionInset: UIEdgeInsets {
+
+    public override var sectionInset: UIEdgeInsets {
         get {
-            return super.sectionInset
+            super.sectionInset
         }
         set {
             super.sectionInset = UIEdgeInsets(top: 0, left: newValue.left, bottom: 0, right: newValue.right)
         }
     }
-    
+
     private var headersAttributes: [UICollectionViewLayoutAttributes] = []
     private var itemsAttributes: [[UICollectionViewLayoutAttributes]] = []
-    
-    override public func prepare() {
+
+    public override func prepare() {
         super.prepare()
-        
+
         guard let collectionView = self.collectionView else {
             return
         }
-        
+
         guard let delegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout else {
             return
         }
-        
+
         guard let dataSource = collectionView.dataSource else {
             return
         }
-        self.headersAttributes = []
-        self.itemsAttributes = []
-        self.contentHeight = 0
-        
+        headersAttributes = []
+        itemsAttributes = []
+        contentHeight = 0
+
         let numberOfSections = dataSource.numberOfSections!(in: collectionView)
         for section in 0..<numberOfSections {
             let headerSize = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: section)
@@ -88,14 +88,13 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
             let indexPath = IndexPath(row: 0, section: section)
             let attributes = UICollectionViewLayoutAttributes(
                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                with: indexPath
-            )
-            attributes.frame = CGRect(x: 0, y: self.contentHeight, width: width, height: height)
-            self.headersAttributes.append(attributes)
-            self.contentHeight += height
-            self.contentHeight += self.minimumSectionSpacing / 2
-            
-            self.itemsAttributes.append([])
+                with: indexPath)
+            attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
+            headersAttributes.append(attributes)
+            contentHeight += height
+            contentHeight += minimumSectionSpacing / 2
+
+            itemsAttributes.append([])
             let numberOfItems = dataSource.collectionView(collectionView, numberOfItemsInSection: section)
             for row in 0..<numberOfItems {
                 let indexPath = IndexPath(row: row, section: section)
@@ -109,22 +108,21 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
                     x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
                     y: contentHeight,
                     width: itemSize.width,
-                    height: 0
-                )
+                    height: 0)
                 attributes.isHidden = true
-                self.itemsAttributes[section].append(attributes)
+                itemsAttributes[section].append(attributes)
             }
-            self.contentHeight += self.minimumSectionSpacing / 2
+            contentHeight += minimumSectionSpacing / 2
         }
     }
-    
-    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard self.collectionView?.dataSource != nil else {
+
+    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard collectionView?.dataSource != nil else {
             return nil
         }
-        
+
         var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
-        
+
         for attributes in headersAttributes {
             if attributes.frame.intersects(rect) {
                 visibleLayoutAttributes.append(attributes)
@@ -132,44 +130,43 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
         }
         return visibleLayoutAttributes
     }
-    
-    override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard self.headersAttributes.indices.contains(indexPath.section) else {
+
+    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard headersAttributes.indices.contains(indexPath.section) else {
             return super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
         }
-        return self.headersAttributes[indexPath.section]
+        return headersAttributes[indexPath.section]
     }
-    
-    
-    override public func layoutAttributesForItem(at indexPath: IndexPath) ->  UICollectionViewLayoutAttributes? {
-        guard self.itemsAttributes.indices.contains(indexPath.section) else {
+
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard itemsAttributes.indices.contains(indexPath.section) else {
             return super.layoutAttributesForItem(at: indexPath)
         }
-        guard self.itemsAttributes[indexPath.section].indices.contains(indexPath.row) else {
+        guard itemsAttributes[indexPath.section].indices.contains(indexPath.row) else {
             return super.layoutAttributesForItem(at: indexPath)
         }
-        return self.itemsAttributes[indexPath.section][indexPath.row]
+        return itemsAttributes[indexPath.section][indexPath.row]
     }
-    
-    override public func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+
+    public override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
         guard let collectionView = self.collectionView else {
             return proposedContentOffset
         }
         var targetOffset = proposedContentOffset
         targetOffset.y = offsetCorrection
-        for section in 0..<self.targetSection {
-            let height = self.headersAttributes[section].frame.size.height
+        for section in 0..<targetSection {
+            let height = headersAttributes[section].frame.size.height
             targetOffset.y += height
             targetOffset.y += minimumSectionSpacing
         }
-        let emptySpace = collectionView.bounds.size.height - (self.collectionViewContentSize.height - targetOffset.y)
+        let emptySpace = collectionView.bounds.size.height - (collectionViewContentSize.height - targetOffset.y)
         if emptySpace > 0 {
             targetOffset.y = targetOffset.y - emptySpace
         }
-        if self.contentHeight < self.collectionViewContentSize.height {
-            let freeSpace = self.collectionViewContentSize.height - (targetOffset.y - self.offsetCorrection)
+        if contentHeight < collectionViewContentSize.height {
+            let freeSpace = collectionViewContentSize.height - (targetOffset.y - offsetCorrection)
             if freeSpace > 0 {
-                targetOffset.y = self.offsetCorrection
+                targetOffset.y = offsetCorrection
             }
         }
         return targetOffset

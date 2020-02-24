@@ -12,9 +12,9 @@ public class CampcotCollectionView: UICollectionView {
 
     /// A Boolean value that determines whether the sections are expanded.
     public var isExpanded: Bool {
-        return self.collectionViewLayout === self.expandedLayout
+        collectionViewLayout === expandedLayout
     }
-    
+
     /// Space between section headers in collapsed state.
     @IBInspectable
     public var minimumSectionSpacing: CGFloat = 0 {
@@ -23,7 +23,7 @@ public class CampcotCollectionView: UICollectionView {
             self.collapsedLayout.minimumSectionSpacing = minimumSectionSpacing
         }
     }
-    
+
     /// Layout minimum interitem spaceign.
     @IBInspectable
     public var minimumInteritemSpacing: CGFloat = 0 {
@@ -32,7 +32,7 @@ public class CampcotCollectionView: UICollectionView {
             self.collapsedLayout.minimumInteritemSpacing = minimumInteritemSpacing
         }
     }
-    
+
     /// Layout minimum line spacing.
     @IBInspectable
     public var minimumLineSpacing: CGFloat = 0 {
@@ -41,12 +41,12 @@ public class CampcotCollectionView: UICollectionView {
             self.collapsedLayout.minimumLineSpacing = minimumLineSpacing
         }
     }
-    
+
     /// Layout section inset.
     public var sectionInset = UIEdgeInsets.zero {
         didSet {
-            self.expandedLayout.sectionInset = sectionInset
-            self.collapsedLayout.sectionInset = sectionInset
+            expandedLayout.sectionInset = sectionInset
+            collapsedLayout.sectionInset = sectionInset
         }
     }
 
@@ -82,98 +82,102 @@ public class CampcotCollectionView: UICollectionView {
     @IBInspectable
     public var sectionHeadersPinToVisibleBounds: Bool = false {
         didSet {
-            self.expandedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
-            self.collapsedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
+            expandedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
+            collapsedLayout.sectionHeadersPinToVisibleBounds = sectionHeadersPinToVisibleBounds
         }
     }
 
     /// Content size calculation rules.
     public var contentSizeAdjustmentBehavior: ContentSizeAdjustmentBehavior = .normal {
         didSet {
-            self.expandedLayout.contentSizeAdjustmentBehavior = contentSizeAdjustmentBehavior
-            self.collapsedLayout.contentSizeAdjustmentBehavior = contentSizeAdjustmentBehavior
+            expandedLayout.contentSizeAdjustmentBehavior = contentSizeAdjustmentBehavior
+            collapsedLayout.contentSizeAdjustmentBehavior = contentSizeAdjustmentBehavior
         }
     }
-    
+
     public init() {
         expandedLayout = ExpandedLayout()
         collapsedLayout = CollapsedLayout()
-        super.init(frame: .zero, collectionViewLayout: self.expandedLayout)
+        super.init(frame: .zero, collectionViewLayout: expandedLayout)
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
+
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        if let expandedLayout = self.collectionViewLayout as? ExpandedLayout {
+        if let expandedLayout = collectionViewLayout as? ExpandedLayout {
             /// When collectionViewLayout is expanded
             self.expandedLayout = expandedLayout
-            self.collapsedLayout = CollapsedLayout()
-        } else if let collapsedLayout = self.collectionViewLayout as? CollapsedLayout {
+            collapsedLayout = CollapsedLayout()
+        } else if let collapsedLayout = collectionViewLayout as? CollapsedLayout {
             /// When collectionViewLayout is collapsed
-            self.expandedLayout = ExpandedLayout()
+            expandedLayout = ExpandedLayout()
             self.collapsedLayout = collapsedLayout
         } else {
             /// By default, if collectionViewLayout was not set neither expanded nor collapsed
-            self.expandedLayout = ExpandedLayout()
-            self.collapsedLayout = CollapsedLayout()
+            expandedLayout = ExpandedLayout()
+            collapsedLayout = CollapsedLayout()
 
-            self.collectionViewLayout = self.expandedLayout /// Default layout
+            collectionViewLayout = expandedLayout /// Default layout
         }
     }
-    
+
     /// Expand all sections and pin section from params to top.
-    public func expand(from section: Int,
-                       offsetCorrection: CGFloat = 0,
-                       animated: Bool,
-                       completion: ((Bool) -> Void)? = nil) {
-        guard !self.isExpanded else {
+    public func expand(
+        from section: Int,
+        offsetCorrection: CGFloat = 0,
+        animated: Bool,
+        completion: ((Bool) -> Void)? = nil) {
+        guard !isExpanded else {
             return
         }
-        self.expandedLayout.targetSection = section
-        self.expandedLayout.offsetCorrection = offsetCorrection
-        self.collapsedLayout.targetSection = section
-        self.collapsedLayout.offsetCorrection = offsetCorrection
-        self.setCollectionViewLayout(self.expandedLayout, animated: animated, completion: { completed in
-            DispatchQueue.main.async(execute: {
+        expandedLayout.targetSection = section
+        expandedLayout.offsetCorrection = offsetCorrection
+        collapsedLayout.targetSection = section
+        collapsedLayout.offsetCorrection = offsetCorrection
+        setCollectionViewLayout(expandedLayout, animated: animated, completion: { completed in
+            DispatchQueue.main.async {
                 completion?(completed)
-            })
+            }
         })
     }
-    
+
     /// Collapse all sections and pin section from params to top.
-    public func collapse(to section: Int,
-                         offsetCorrection: CGFloat = 0,
-                         animated: Bool,
-                         completion: ((Bool) -> Void)? = nil) {
-        guard self.isExpanded else {
+    public func collapse(
+        to section: Int,
+        offsetCorrection: CGFloat = 0,
+        animated: Bool,
+        completion: ((Bool) -> Void)? = nil) {
+        guard isExpanded else {
             return
         }
-        self.expandedLayout.targetSection = section
-        self.expandedLayout.offsetCorrection = offsetCorrection
-        self.collapsedLayout.targetSection = section
-        self.collapsedLayout.offsetCorrection = offsetCorrection
-        self.setCollectionViewLayout(self.collapsedLayout, animated: animated, completion: { completed in
-            DispatchQueue.main.async(execute: {
+        expandedLayout.targetSection = section
+        expandedLayout.offsetCorrection = offsetCorrection
+        collapsedLayout.targetSection = section
+        collapsedLayout.offsetCorrection = offsetCorrection
+        setCollectionViewLayout(collapsedLayout, animated: animated, completion: { completed in
+            DispatchQueue.main.async {
                 completion?(completed)
-            })
+            }
         })
     }
-    
+
     /// Change sections mode to opposite.
-    public func toggle(to section: Int,
-                       offsetCorrection: CGFloat = 0,
-                       animated: Bool,
-                       completion: ((Bool) -> Void)? = nil) {
-        if self.isExpanded {
-            self.collapse(to: section,
-                          offsetCorrection: offsetCorrection,
-                          animated: animated,
-                          completion: completion)
-        }
-        else {
-            self.expand(from: section,
-                        offsetCorrection: offsetCorrection,
-                        animated: animated,
-                        completion: completion)
+    public func toggle(
+        to section: Int,
+        offsetCorrection: CGFloat = 0,
+        animated: Bool,
+        completion: ((Bool) -> Void)? = nil) {
+        if isExpanded {
+            collapse(
+                to: section,
+                offsetCorrection: offsetCorrection,
+                animated: animated,
+                completion: completion)
+        } else {
+            expand(
+                from: section,
+                offsetCorrection: offsetCorrection,
+                animated: animated,
+                completion: completion)
         }
     }
 }

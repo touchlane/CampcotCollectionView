@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CF7C248DA5030AE4D11248E /* Pods_CampcotCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C786C0EF4C93259C17D1C1 /* Pods_CampcotCollectionView.framework */; };
 		DD35D937201B57C80049ED03 /* CampcotCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD35D92D201B57C80049ED03 /* CampcotCollectionView.framework */; };
 		DD35D93C201B57C80049ED03 /* CampcotCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D93B201B57C80049ED03 /* CampcotCollectionViewTests.swift */; };
 		DD35D93E201B57C80049ED03 /* CampcotCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = DD35D930201B57C80049ED03 /* CampcotCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		268E4722A0249E9E9F2B6AED /* Pods-CampcotCollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampcotCollectionView.debug.xcconfig"; path = "Target Support Files/Pods-CampcotCollectionView/Pods-CampcotCollectionView.debug.xcconfig"; sourceTree = "<group>"; };
+		C3C786C0EF4C93259C17D1C1 /* Pods_CampcotCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampcotCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4365ECCEF6EE222EEFFF5C5 /* Pods-CampcotCollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampcotCollectionView.release.xcconfig"; path = "Target Support Files/Pods-CampcotCollectionView/Pods-CampcotCollectionView.release.xcconfig"; sourceTree = "<group>"; };
 		DD35D92D201B57C80049ED03 /* CampcotCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CampcotCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD35D930201B57C80049ED03 /* CampcotCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CampcotCollectionView.h; sourceTree = "<group>"; };
 		DD35D931201B57C80049ED03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF7C248DA5030AE4D11248E /* Pods_CampcotCollectionView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +69,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39B2B30C7837270149B1D697 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				268E4722A0249E9E9F2B6AED /* Pods-CampcotCollectionView.debug.xcconfig */,
+				D4365ECCEF6EE222EEFFF5C5 /* Pods-CampcotCollectionView.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DD35D923201B57C80049ED03 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +86,8 @@
 				DD35D947201B58910049ED03 /* Source */,
 				DD35D93A201B57C80049ED03 /* Tests */,
 				DD35D92E201B57C80049ED03 /* Products */,
+				39B2B30C7837270149B1D697 /* Pods */,
+				E79090B653A1D611BBC8F213 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +148,14 @@
 			name = Metadata;
 			sourceTree = "<group>";
 		};
+		E79090B653A1D611BBC8F213 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3C786C0EF4C93259C17D1C1 /* Pods_CampcotCollectionView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -149,6 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD35D941201B57C80049ED03 /* Build configuration list for PBXNativeTarget "CampcotCollectionView" */;
 			buildPhases = (
+				5F578D6216B9F56DD5C089A0 /* [CP] Check Pods Manifest.lock */,
 				DD35D928201B57C80049ED03 /* Sources */,
 				DD35D929201B57C80049ED03 /* Frameworks */,
 				DD35D92A201B57C80049ED03 /* Headers */,
@@ -240,6 +266,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F578D6216B9F56DD5C089A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CampcotCollectionView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD35D928201B57C80049ED03 /* Sources */ = {
@@ -391,6 +442,7 @@
 		};
 		DD35D942201B57C80049ED03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 268E4722A0249E9E9F2B6AED /* Pods-CampcotCollectionView.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -414,6 +466,7 @@
 		};
 		DD35D943201B57C80049ED03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4365ECCEF6EE222EEFFF5C5 /* Pods-CampcotCollectionView.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

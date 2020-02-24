@@ -7,4 +7,10 @@
    <FileRef
       location = "container:CampcotCollectionView.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:CampcotCollectionView.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

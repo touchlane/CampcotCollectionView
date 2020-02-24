@@ -6,24 +6,23 @@
 //  Copyright © 2020 Touchlane LLC. All rights reserved.
 //
 
-import UIKit
 import CampcotCollectionView
+import UIKit
 
 class StoryboardViewController: UIViewController {
-
-    @IBOutlet weak var collectionView: CampcotCollectionView!
+    @IBOutlet var collectionView: CampcotCollectionView!
 
     let itemsInRow = 2
     var itemsInSection: [Int: Int] = [:]
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        .default
     }
 }
 
 extension StoryboardViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 20
+        20
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -64,12 +63,12 @@ extension StoryboardViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width, height: 60)
+        CGSize(width: UIScreen.main.bounds.size.width, height: 60)
     }
 }
 
 extension StoryboardViewController: CustomHeaderViewDelegate {
     func selectSection(section: Int) {
-        self.collectionView.toggle(to: section, animated: true)
+        collectionView.toggle(to: section, animated: true)
     }
 }
