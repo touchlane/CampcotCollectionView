@@ -125,7 +125,8 @@ public class CampcotCollectionView: UICollectionView {
         from section: Int,
         offsetCorrection: CGFloat = 0,
         animated: Bool,
-        completion: ((Bool) -> Void)? = nil) {
+        completion: ((Bool) -> Void)? = nil
+    ) {
         guard !isExpanded else {
             return
         }
@@ -145,7 +146,8 @@ public class CampcotCollectionView: UICollectionView {
         to section: Int,
         offsetCorrection: CGFloat = 0,
         animated: Bool,
-        completion: ((Bool) -> Void)? = nil) {
+        completion: ((Bool) -> Void)? = nil
+    ) {
         guard isExpanded else {
             return
         }
@@ -165,19 +167,22 @@ public class CampcotCollectionView: UICollectionView {
         to section: Int,
         offsetCorrection: CGFloat = 0,
         animated: Bool,
-        completion: ((Bool) -> Void)? = nil) {
+        completion: ((Bool) -> Void)? = nil
+    ) {
         if isExpanded {
             collapse(
                 to: section,
                 offsetCorrection: offsetCorrection,
                 animated: animated,
-                completion: completion)
+                completion: completion
+            )
         } else {
             expand(
                 from: section,
                 offsetCorrection: offsetCorrection,
                 animated: animated,
-                completion: completion)
+                completion: completion
+            )
         }
     }
 }

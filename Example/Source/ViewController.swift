@@ -33,11 +33,13 @@ class ViewController: UIViewController {
         collectionView.sectionHeadersPinToVisibleBounds = true
         collectionView.register(
             CustomCollectionViewCell.self,
-            forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier)
+            forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier
+        )
         collectionView.register(
             CustomHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: CustomHeaderView.reuseIdentifier)
+            withReuseIdentifier: CustomHeaderView.reuseIdentifier
+        )
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +78,8 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CustomCollectionViewCell.reuseIdentifier,
-            for: indexPath) as! CustomCollectionViewCell
+            for: indexPath
+        ) as! CustomCollectionViewCell
         cell.text = "\(indexPath.section):\(indexPath.row)"
         return cell
     }
@@ -85,7 +88,8 @@ extension ViewController: UICollectionViewDataSource {
         let view = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: CustomHeaderView.reuseIdentifier,
-            for: indexPath) as! CustomHeaderView
+            for: indexPath
+        ) as! CustomHeaderView
         view.section = indexPath.section
         view.text = "section: \(indexPath.section)"
         view.delegate = self

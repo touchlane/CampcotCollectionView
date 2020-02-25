@@ -88,7 +88,8 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
             let indexPath = IndexPath(row: 0, section: section)
             let attributes = UICollectionViewLayoutAttributes(
                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                with: indexPath)
+                with: indexPath
+            )
             attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
             headersAttributes.append(attributes)
             contentHeight += height
@@ -108,7 +109,8 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
                     x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
                     y: contentHeight,
                     width: itemSize.width,
-                    height: 0)
+                    height: 0
+                )
                 attributes.isHidden = true
                 itemsAttributes[section].append(attributes)
             }

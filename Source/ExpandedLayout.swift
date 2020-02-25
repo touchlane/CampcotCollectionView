@@ -124,7 +124,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
                     x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
                     y: contentHeight,
                     width: itemSize.width,
-                    height: itemSize.height)
+                    height: itemSize.height
+                )
 
                 attributes.isHidden = false
                 itemsAttributes[section].append(attributes)
@@ -183,7 +184,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
                 }
                 elementAttributes.frame.origin.y -= sectionHeadersPinToBoundsCorrection(
                     proposedTopOffset: elementAttributes.frame.origin.y,
-                    estimatedTopOffset: headersAttributes[elementAttributes.indexPath.section].frame.origin.y)
+                    estimatedTopOffset: headersAttributes[elementAttributes.indexPath.section].frame.origin.y
+                )
             }
             return attributes
         }
@@ -216,7 +218,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
             let estimatedTopOffset = headersAttributes[indexPath.section].frame.origin.y
             attributes?.frame.origin.y -= sectionHeadersPinToBoundsCorrection(
                 proposedTopOffset: proposedTopOffset,
-                estimatedTopOffset: estimatedTopOffset)
+                estimatedTopOffset: estimatedTopOffset
+            )
             return attributes
         }
         return headersAttributes[indexPath.section]
@@ -303,7 +306,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
             let indexPath = IndexPath(row: 0, section: section)
             let attributes = UICollectionViewLayoutAttributes(
                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                with: indexPath)
+                with: indexPath
+            )
             attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
             headersAttributes.append(attributes)
             contentHeight += height
@@ -332,7 +336,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
                     x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
                     y: contentHeight,
                     width: itemSize.width,
-                    height: itemSize.height)
+                    height: itemSize.height
+                )
 
                 attributes.isHidden = false
                 itemsAttributes[section].append(attributes)
@@ -421,7 +426,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
             let indexPath = IndexPath(row: 0, section: section)
             let attributes = UICollectionViewLayoutAttributes(
                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                with: indexPath)
+                with: indexPath
+            )
             attributes.frame = CGRect(x: 0, y: contentHeight, width: width, height: height)
             headersAttributes.append(attributes)
             contentHeight += height
@@ -446,7 +452,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
                     x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
                     y: contentHeight,
                     width: itemSize.width,
-                    height: itemSize.height)
+                    height: itemSize.height
+                )
 
                 attributes.isHidden = false
                 // Sometimes cells overlap headers, the code below fixes it
@@ -481,7 +488,8 @@ public class ExpandedLayout: UICollectionViewFlowLayout {
                             if section != targetSection {
                                 headersAttributes[section].frame.origin.y = min(
                                     headersAttributes[section + 1].frame.origin.y - headersAttributes[section].frame.size.height,
-                                    visibleContentOffset)
+                                    visibleContentOffset
+                                )
                             }
                             let originY = headersAttributes[section].frame.origin.y
                             for i in (0..<section).reversed() {
@@ -499,7 +507,8 @@ private typealias ExpandedLayoutPrivate = ExpandedLayout
 private extension ExpandedLayoutPrivate {
     private func sectionHeadersPinToBoundsCorrection(
         proposedTopOffset: CGFloat,
-        estimatedTopOffset: CGFloat) -> CGFloat {
+        estimatedTopOffset: CGFloat
+    ) -> CGFloat {
         guard let collectionViewContentOffset = collectionView?.contentOffset.y,
             let collectionViewTopInset = collectionView?.contentInset.top,
             self.sectionHeadersPinToVisibleBounds else {
@@ -641,6 +650,7 @@ private extension ExpandedLayoutPrivate {
         contentOffset = min(contentOffset, maxContentOffset)
         collectionView.setContentOffset(
             CGPoint(x: collectionView.contentOffset.x, y: contentOffset),
-            animated: false)
+            animated: false
+        )
     }
 }

@@ -37,7 +37,8 @@ extension StoryboardViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CustomCollectionViewCell.reuseIdentifier,
-            for: indexPath) as! CustomCollectionViewCell
+            for: indexPath
+        ) as! CustomCollectionViewCell
         cell.text = "\(indexPath.section):\(indexPath.row)"
         return cell
     }
@@ -46,7 +47,8 @@ extension StoryboardViewController: UICollectionViewDataSource {
         let view = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: CustomHeaderView.reuseIdentifier,
-            for: indexPath) as! CustomHeaderView
+            for: indexPath
+        ) as! CustomHeaderView
         view.section = indexPath.section
         view.text = "section: \(indexPath.section)"
         view.delegate = self
