@@ -1,20 +1,13 @@
-# file options
-
-# format options
-
 --commas inline
 --header ignore
 --indent 4
 --patternlet inline
---operatorfunc no-space
 --wraparguments before-first
 --wrapparameters before-first
 --wrapcollections before-first
 --nospaceoperators ..<, ...
---swiftversion 5.1
-
-# rules
+--swiftversion 5.0
 
 --enable isEmpty
---disable unusedArguments
-
+--disable unusedArguments, trailingClosures, redundantReturn
+--exclude Pods, scripts

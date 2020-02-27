@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        .default
+        return .default
     }
 
     private func activateCollectionViewConstraints(view: UIView, anchorView: UIView) {
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        20
+        return 20
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,7 +104,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        CGSize(width: UIScreen.main.bounds.size.width, height: 60)
+        return CGSize(width: UIScreen.main.bounds.size.width, height: 60)
     }
 }
 

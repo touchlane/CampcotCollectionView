@@ -52,7 +52,7 @@ public class CollapsedLayout: UICollectionViewFlowLayout {
 
     public override var sectionInset: UIEdgeInsets {
         get {
-            super.sectionInset
+            return super.sectionInset
         }
         set {
             super.sectionInset = UIEdgeInsets(top: 0, left: newValue.left, bottom: 0, right: newValue.right)
