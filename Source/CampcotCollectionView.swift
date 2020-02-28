@@ -135,9 +135,9 @@ public class CampcotCollectionView: UICollectionView {
         collapsedLayout.targetSection = section
         collapsedLayout.offsetCorrection = offsetCorrection
         setCollectionViewLayout(expandedLayout, animated: animated, completion: { completed in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async(execute: {
                 completion?(completed)
-            }
+            })
         })
     }
 
@@ -156,9 +156,9 @@ public class CampcotCollectionView: UICollectionView {
         collapsedLayout.targetSection = section
         collapsedLayout.offsetCorrection = offsetCorrection
         setCollectionViewLayout(collapsedLayout, animated: animated, completion: { completed in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async(execute: {
                 completion?(completed)
-            }
+            })
         })
     }
 
