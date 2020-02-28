@@ -12,7 +12,7 @@ public class CampcotCollectionView: UICollectionView {
 
     /// A Boolean value that determines whether the sections are expanded.
     public var isExpanded: Bool {
-        collectionViewLayout === expandedLayout
+        return collectionViewLayout === expandedLayout
     }
 
     /// Space between section headers in collapsed state.
