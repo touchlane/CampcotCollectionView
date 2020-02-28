@@ -56,10 +56,12 @@ let campcotCollectionView = CampcotCollectionView()
 2. Add `campcotCollectionView` to view hierarchy.
 3. Call `toggle` method on `campcotCollectionView`.
 ```swift
-public func toggle(to section: Int,
-                   offsetCorrection: CGFloat = default,
-                   animated: Bool,
-                   completion: ((Bool) -> Void)? = default)
+public func toggle(
+    to section: Int,
+    offsetCorrection: CGFloat = default,
+    animated: Bool,
+    completion: ((Bool) -> Void)? = default
+)
 ```
 ### Storyboard Setup
 
@@ -84,10 +86,12 @@ Expands all the sections. Pins a section at index `section` to the top of view b
 `animated` - if `true` expands sections with animation.
 `completion` - callback for animation.
 ```swift
-public func expand(from section: Int,
-                   offsetCorrection: CGFloat = default,
-                   animated: Bool,
-                   completion: ((Bool) -> Void)? = default)
+public func expand(
+    from section: Int,
+    offsetCorrection: CGFloat = default,
+    animated: Bool,
+    completion: ((Bool) -> Void)? = default
+)
 ```
 
 Collapses all the sections. Pins a section at index `section` to the top of view bounds.
@@ -95,10 +99,12 @@ Collapses all the sections. Pins a section at index `section` to the top of view
 `animated` - if `true` collapses sections with animation.
 `completion` - callback for animation.
 ```swift
-public func collapse(to section: Int,
-                     offsetCorrection: CGFloat = default,
-                     animated: Bool,
-                     completion: ((Bool) -> Void)? = default)
+public func collapse(
+    to section: Int,
+    offsetCorrection: CGFloat = default,
+    animated: Bool,
+    completion: ((Bool) -> Void)? = default
+)
 ```
 
 Toggles current state from collapsed to expaned and vise versa. Pins a section at index `section` to the top of view bounds.
@@ -106,9 +112,11 @@ Toggles current state from collapsed to expaned and vise versa. Pins a section a
 `animated` - if `true` toggles sections with animation.
 `completion` - callback for animation.
 ```swift
-public func toggle(to section: Int,
-                   offsetCorrection: CGFloat = default,
-                   animated: Bool,
-                   completion: ((Bool) -> Void)? = default)
+public func toggle(
+    to section: Int,
+    offsetCorrection: CGFloat = default,
+    animated: Bool,
+    completion: ((Bool) -> Void)? = default
+)
 ```
 ___
