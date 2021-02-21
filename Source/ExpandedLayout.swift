@@ -115,25 +115,29 @@ public class ExpandedLayout: UICollectionViewFlowLayout  {
                 let indexPath = IndexPath(row: row, section: section)
                 let itemSize = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-
+                
                 let columnsCount = Int(contentWidth / itemSize.width)
-                let column = row % columnsCount
-                attributes.frame = CGRect(
-                    x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
-                    y: contentHeight,
-                    width: itemSize.width,
-                    height: itemSize.height
-                )
-
-                attributes.isHidden = false
-                self.itemsAttributes[section].append(attributes)
-
-                if column == columnsCount - 1 || row == numberOfItems - 1 {
-                    self.contentHeight += itemSize.height
-                    if row < numberOfItems - 1 {
-                        contentHeight += minimumLineSpacing
+    
+                if columnsCount > 0 {
+                    let column = row % columnsCount
+                    attributes.frame = CGRect(
+                        x: sectionInset.left + CGFloat(column) * (itemSize.width + minimumInteritemSpacing),
+                        y: contentHeight,
+                        width: itemSize.width,
+                        height: itemSize.height
+                    )
+                    
+                    attributes.isHidden = false
+                    self.itemsAttributes[section].append(attributes)
+                    
+                    if column == columnsCount - 1 || row == numberOfItems - 1 {
+                        self.contentHeight += itemSize.height
+                        if row < numberOfItems - 1 {
+                            contentHeight += minimumLineSpacing
+                        }
                     }
                 }
+                
             }
             self.contentHeight += self.sectionInset.bottom
         }
