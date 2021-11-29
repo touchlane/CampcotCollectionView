@@ -95,10 +95,10 @@ public class CampcotCollectionView: UICollectionView {
         }
     }
     
-    public init() {
+    public init(isExpanded: Bool = true) {
         expandedLayout = ExpandedLayout()
         collapsedLayout = CollapsedLayout()
-        super.init(frame: .zero, collectionViewLayout: self.expandedLayout)
+        super.init(frame: .zero, collectionViewLayout: isExpanded ? self.expandedLayout : self.collapsedLayout)
     }
     
     required public init?(coder aDecoder: NSCoder) {
