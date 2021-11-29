@@ -2,4 +2,4 @@
 
 source ~/.rvm/scripts/rvm
 rvm use default
-pod trunk push
+pod trunk push --verbose | ruby -e 'ARGF.each{ print "." }'
